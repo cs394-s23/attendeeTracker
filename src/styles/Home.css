@@ -1,0 +1,19 @@
+.feed {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#header {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.ind-card {
+  border: 3px solid black;
+  border-radius: 10px;
+  text-align: center;
+  margin: auto;
+  padding: 10px;
+}
