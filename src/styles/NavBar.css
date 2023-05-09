@@ -1,0 +1,85 @@
+.navigation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100vw;
+    margin: 0;
+    height: 100px;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  
+  .nav-container {
+    margin-top: 0;
+    /* border: 2px dotted orange; */
+    display: flex;
+    justify-content: space-between;
+  
+    /* background-color: blue; */
+  }
+  
+  .nav-link {
+    align-self: start;
+    border-radius: 10px;
+  }
+  
+  .nav-link:hover {
+    background-color: gray;
+  }
+  
+  @media (min-width: 1000) {
+    .navbar {
+      height: 100px;
+      /* overflow:scroll; */
+    }
+  }
+  
+  @media (max-width: 999px) {
+    .special {
+      display: flex;
+      flex-direction: row;
+      /* justify-content: flex-end; */
+    }
+    .navbar {
+      height: 100px;
+      overflow: scroll;
+    }
+  
+    .left-navbar a {
+      padding-right: 10px;
+    }
+  }
+  
+  .navbar-nav {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    /* border: 1px solid red; */
+  }
+  
+  .navbar {
+    display: flex;
+    padding-bottom: 13px;
+  }
+  
+  .user-section {
+    display: flex;
+    align-items: center;
+    /* border: 1px solid red; */
+  }
+  
+  .left-navbar {
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-buttons {
+    margin-left: 25px;
+  }
+  
+  .sign-in-out {
+    margin-left: 50px;
+  }
+  
