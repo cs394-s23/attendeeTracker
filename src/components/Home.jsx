@@ -1,16 +1,18 @@
 import NavBar from "./NavBar";
+import Event from "./Event";
 import "../styles/Home.css";
-const Dashboard = () => {
+
+const Dashboard = ( { data } ) => {
+  if (!data) {
+    return <h1>Data is loading...</h1>;
+  }
+  console.log(data);
   return (
     <div>
       <NavBar />
       <h1 id="header"> Events </h1>
       <div className="feed">
-        <div className="ind-card">
-          <h3>Data Science Event</h3>
-          <p>Party for data science enthusiasts</p>
-          <p>50 going, 100 invited</p>
-        </div>
+        {data.Events.map((event, index) => <Event data={event} key={index} />)}
       </div>
     </div>
   );
