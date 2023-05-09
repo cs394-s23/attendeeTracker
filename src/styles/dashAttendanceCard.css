@@ -1,0 +1,60 @@
+.dashAttendanceCard {
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    padding: 1.5rem;
+    text-align: left;
+    max-width: 600px;
+
+    display: flex;
+    flex-direction: row;
+
+    
+}
+
+.dashAttendanceCard-body {
+    display: flex;
+    /* border: 1px solid red; */
+    
+}
+
+
+
+.attendance {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 1rem;
+
+    width: 100%;
+    /* border: 1px solid orange; */
+
+}
+
+
+.attendance-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* border: 1px solid green; */
+}
+
+.attendance-status {
+    font-size: 1.25rem;
+}
+
+.attendance-number {
+    font-size: 1.5rem;
+}
+
+.dashcard-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+/* .attendance-icon {
+    width: 20%;
+} */

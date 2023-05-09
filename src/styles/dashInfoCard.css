@@ -1,0 +1,33 @@
+.dashcard {
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    padding: 1.5rem;
+    text-align: left;
+    max-width: 600px;
+
+    display: flex;
+    flex-direction: row;
+
+    
+}
+
+.dashcard-body {
+    display: flex;
+    flex-direction: column;
+    max-width: 60%;
+}
+
+.card-image {
+    width: 200px;
+    height: auto;
+    /* border: 1px solid green; */
+
+}
+
+
+.dashcard-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
