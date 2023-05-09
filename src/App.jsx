@@ -15,13 +15,13 @@ function App() {
 
   return (
     <>
-    <BrowserRouter>
+      <BrowserRouter>
         <Routes>
-        <Route
+          <Route
             path="/"
             element={
               <div>
-                <Home data = {data} />
+                <Home data={data} />
               </div>
             }
           />
@@ -30,7 +30,7 @@ function App() {
             path="/:eventId"
             element={
               <div>
-                <Home />
+                <Dashboard />
               </div>
             }
           />
