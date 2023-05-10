@@ -1,11 +1,11 @@
-import "../styles/dashAttendanceCard.css"
-import Card from 'react-bootstrap/Card';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleCheck, faCircleXmark, faCircleQuestion } from '@fortawesome/free-solid-svg-icons'
-
-
-
-
+import "../styles/dashAttendanceCard.css";
+import Card from "react-bootstrap/Card";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCircleCheck,
+  faCircleXmark,
+  faCircleQuestion,
+} from "@fortawesome/free-solid-svg-icons";
 
 const DashAttendanceCard = ( { data } ) => {
     // SEMI HARD CODED FOR THE FIRST EVENT
@@ -35,10 +35,7 @@ const DashAttendanceCard = ( { data } ) => {
         
 
         </Card>
-    )
-    
-
-
-}
+    );
+};
 
 export default DashAttendanceCard;
