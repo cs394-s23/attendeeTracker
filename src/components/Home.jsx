@@ -3,7 +3,7 @@ import Event from "./Event";
 import "../styles/Home.css";
 
 
-const Dashboard = ( { data } ) => {
+const Home = ( { data } ) => {
 
   if (!data) {
     return <h1>Data is loading...</h1>;
@@ -24,4 +24,4 @@ const Dashboard = ( { data } ) => {
   );
 };
 
-export default Dashboard;
+export default Home;

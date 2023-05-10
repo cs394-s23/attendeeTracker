@@ -3,7 +3,9 @@ import React from "react";
 import Chart from "react-apexcharts";
 import Card from "react-bootstrap/Card";
 
-const DashChartCard = () => {
+const DashChartCard = ( { data } ) => {
+  // SEMI HARD CODED FOR THE FIRST EVENT
+  data = data.Events[0];
   return (
     <div>
       <Card className="dashcard">
@@ -15,7 +17,7 @@ const DashChartCard = () => {
                 type="pie"
                 width={550}
                 height={550}
-                series={[100, 15, 25]}
+                series={[data.count.attending, data.count.not_attending, data.count.no_response]}
                 options={{
                   labels: ["Attending", "Not Attending", "No Response"],
                 }}

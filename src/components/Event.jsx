@@ -16,8 +16,8 @@ const Event = (data) => {
       <h3>{data.name}</h3>
       <p>{data.details}</p>
       <p>
-        {data.count.going} going, {data.count.invited} invited,{" "}
-        {data.count.not_going} not going
+        {data.count.attending} attending, {data.count.no_response} no response,{" "}
+        {data.count.not_attending} not attending
       </p>
     </div>
   );

@@ -31,7 +31,7 @@ function App() {
             path="/:eventId"
             element={
               <div>
-                <Dashboard />
+                <Dashboard data={data} />
               </div>
             }
           />
