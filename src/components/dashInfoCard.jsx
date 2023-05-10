@@ -20,7 +20,7 @@ const DashInfoCard = ({ data }) => {
           <p>{data.details}</p>
         </Card.Text>
       </Card.Body>
-      <Card.Img className="card-image" src="public/calendar.png" />
+      <Card.Img className="card-image" src="calendar.png" />
     </Card>
   );
 };
