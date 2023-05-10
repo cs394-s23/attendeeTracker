@@ -1,4 +1,16 @@
 .dashboard {
-    margin: 100px;
-   
+  /* margin: 100px; */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashcard {
+  width: 50vw;
+}
+
+.dashAttendanceCard {
+  width: 50vw;
 }
