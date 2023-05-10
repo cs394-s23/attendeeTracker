@@ -1,9 +1,10 @@
+import "../styles/Dashboard.css"
 import NavBar from "./NavBar"
 import DashInfoCard from "./dashInfoCard"
 import DashAttendanceCard from "./dashAttendanceCard"
 const Dashboard = () => {
     return (
-        <div>
+        <div className="dashboard">
             <NavBar />
             <h1>Data Science Event</h1>
             <DashInfoCard/>
