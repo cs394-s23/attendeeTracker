@@ -5,6 +5,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  transition-duration: 0.3s;
+  transition-property: transform;
+}
+
+.card:hover,
+.card:focus,
+.card:active {
+  transform: scale(1.01);
 }
 
 .dashcard {
