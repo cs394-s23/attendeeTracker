@@ -8,11 +8,11 @@ const DashChartCard = () => {
       <div>
         <Chart
           type="pie"
-          width={1349}
-          height={550}
-          series={[23, 43, 50, 54, 65]}
+          width={500}
+          height={400}
+          series={[100, 15, 25]}
           options={{
-            labels: ["Attending", "Not Attending", "No Respond"],
+            labels: ["Attending", "Not Attending", "No Response"],
           }}
         ></Chart>
       </div>
