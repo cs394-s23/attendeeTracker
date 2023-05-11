@@ -12,13 +12,17 @@ const Home = ( { data } ) => {
   return (
     <div>
       <NavBar />
-      <h1 id="header"> Events </h1>
-      <div className="feed">
+    
+      <div className="homepage-container">
+        
+        <h1 id="header"> Events </h1>
+        <div className="feed">
 
-        {data.Events.map((event, index) => (
-          <Event data={event} key={index} />
-        ))}
+          {data.Events.map((event, index) => (
+            <Event data={event} key={index} />
+          ))}
 
+        </div>
       </div>
     </div>
   );
