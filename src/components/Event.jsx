@@ -1,5 +1,6 @@
 import "../styles/Event.css";
 import { useNavigate } from "react-router-dom";
+import Card from "react-bootstrap/Card";
 
 const Event = (data) => {
   data = data.data;
@@ -12,14 +13,16 @@ const Event = (data) => {
   };
 
   return (
-    <div className="ind-card" onClick={routeChange}>
-      <h3>{data.name}</h3>
-      <p>{data.details}</p>
-      <p>
-        {data.count.attending} attending, {data.count.no_response} no response,{" "}
-        {data.count.not_attending} not attending
-      </p>
-    </div>
+    <Card className="event-card" onClick={routeChange}>
+      <Card.Body>
+        <h3>{data.name}</h3>
+        <p>{data.details}</p>
+        <p>
+          {data.count.attending} attending, {data.count.no_response} no response,{" "}
+          {data.count.not_attending} not attending
+        </p>
+      </Card.Body>
+    </Card>
   );
 };
 
