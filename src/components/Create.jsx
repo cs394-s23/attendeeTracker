@@ -9,7 +9,7 @@ import { pushDb } from "../utilities/firebase";
 const Create = () => {
   var YOUR_CLIENT_ID =
     "830241005429-o7l0fqrcdqp9ef44qc8upa6j3510vbvr.apps.googleusercontent.com";
-  var YOUR_REDIRECT_URI = "http://localhost:5173";
+  var YOUR_REDIRECT_URI = "http://localhost:5173/create";
   var fragmentString = location.hash.substring(1);
 
   let navigate = useNavigate();
@@ -44,7 +44,7 @@ const Create = () => {
     e.preventDefault();
     const formData = new FormData(e.target),
       formDataObj = Object.fromEntries(formData.entries());
-    console.log(formDataObj);
+    console.log("wait what " + e);
 
     var form = formDataObj.form;
     trySampleRequest(form, true);
@@ -131,7 +131,6 @@ const Create = () => {
   if (Object.keys(params).length > 0) {
     localStorage.setItem("oauth2-test-params", JSON.stringify(params));
     if (params["state"] && params["state"] == "try_sample_request") {
-      console.log("hi");
       trySampleRequest();
     }
   }
@@ -139,7 +138,7 @@ const Create = () => {
   return (
     <div>
       <NavBar />
-      <Form id="form" onSubmit={(e) => test(e)}>
+      <Form id="form" onSubmit={test}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Forms ID</Form.Label>
           <Form.Control name="form" placeholder="Enter Forms ID" />

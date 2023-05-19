@@ -11,9 +11,8 @@ const DashChartCard = ({ data }) => {
   // data = data.Events[0];
   return (
     <div>
-      <Card className="dashcard">
-        <Card.Body className="dashcard-body">
-          <Card.Title className="dashcard-title">Statistics</Card.Title>
+      <Card className="dashChartCard">
+        <Card.Body className="dashChartCard-body">
           <React.Fragment>
             <div>
               <Chart

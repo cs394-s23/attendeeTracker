@@ -7,10 +7,9 @@ const DashInfoCard = ({ data }) => {
   var splitDate = data.time.split("-");
   console.log(splitDate);
   return (
-    <Card className="dashcard">
-      <Card.Body className="dashcard-body">
-        <Card.Title className="dashcard-title">{data.title}</Card.Title>
-        <Card.Text>
+    <Card className="dashInfoCard">
+      <Card.Body className="dashInfoCard-body">
+        <Card.Text className="dashInfoCard-text-section">
           <p>
             Date: {splitDate[0]}/{splitDate[1]}/{splitDate[2]}
           </p>
@@ -20,7 +19,7 @@ const DashInfoCard = ({ data }) => {
           <p>{data.details}</p>
         </Card.Text>
       </Card.Body>
-      <Card.Img className="card-image" src="calendar.png" />
+      <Card.Img className="dashInfoCard-image" src="calendar.png" />
     </Card>
   );
 };
