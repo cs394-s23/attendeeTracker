@@ -6,10 +6,11 @@ import DashChartCard from "./DashChartCard";
 import { useParams } from "react-router-dom";
 const Dashboard = ({ data }) => {
   let { eventId } = useParams();
-  console.log("eventId " + eventId);
+  //console.log("eventId " + eventId);
   if (!data) {
     return <h1>Data is loading...</h1>;
   }
+  console.log("hi" + data);
 
   data = data.Events[eventId];
   return (

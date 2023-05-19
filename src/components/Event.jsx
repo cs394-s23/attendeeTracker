@@ -1,13 +1,12 @@
 import "../styles/Event.css";
 import { useNavigate } from "react-router-dom";
 
-const Event = (data) => {
+const Event = (data, key) => {
   data = data.data;
-  console.log(data);
 
   let navigate = useNavigate();
   const routeChange = () => {
-    let path = "/" + data.id;
+    let path = "/" + data.key;
     navigate(path);
   };
 

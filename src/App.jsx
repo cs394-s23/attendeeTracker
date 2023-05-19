@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Dashboard from "./components/Dashboard";
 import NavBar from "./components/NavBar";
 import Home from "./components/Home";
+import Create from "./components/Create.jsx";
 import { Link, BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { useDbData } from "./utilities/firebase";
@@ -35,6 +36,8 @@ function App() {
               </div>
             }
           />
+
+          <Route path="/create" element={<Create />} />
         </Routes>
       </BrowserRouter>
     </>

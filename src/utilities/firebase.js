@@ -5,6 +5,7 @@ import { getStorage } from "firebase/storage"
 import { getDatabase, onValue, ref, update, runTransaction, push, set, connectDatabaseEmulator } from "firebase/database";
 import { useCallback, useEffect, useState } from "react";
 
+import { v4 as uuid } from 'uuid';
 
 import {
   getAuth,
