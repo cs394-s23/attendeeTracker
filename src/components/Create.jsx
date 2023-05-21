@@ -22,19 +22,43 @@ const Create = () => {
   // If there's an access token, try an API request.
   // Otherwise, start OAuth 2.0 flow.
 
-  const parseResponse = (e) => {
-    e = JSON.parse(e);
+  const countAnswers = (e, questionId) => {
+    var going = 0;
+    var not_going = 0;
+    var maybe = 0;
+    // console.log(e);
+    for (var i = 0; i < e.responses.length; i++) {
+      var ind_response =
+        e.responses[i].answers[questionId].textAnswers.answers[0].value;
+      if (ind_response == "Yes") going = going + 1;
+      else if (ind_response == "No") not_going = not_going + 1;
+      else maybe = maybe + 1;
+    }
+    var result = {};
+    result["attending"] = going;
+    result["no_response"] = not_going;
+    result["not_attending"] = maybe;
+
+    return result;
+  };
+
+  const parseResponse = (e, v) => {
+    // console.log(e);
+    // console.log(v);
+    var e = JSON.parse(e);
+    var v = JSON.parse(v);
     var data = {};
-    var going = {};
-    going["attending"] = 3; //hardcoded till we get a good way of data collection
-    going["no_response"] = 76;
-    going["not_attending"] = 5;
     data["name"] = e["info"]["title"];
     data["details"] = e.info.description;
     data["host"] = e.items[1].description;
     data["time"] = e.items[0].description;
-    data["count"] = going;
 
+    console.log(data["details"]);
+    var questionId = e.items[2].questionItem.question.questionId;
+    var going = countAnswers(v, questionId);
+
+    data["count"] = going;
+    console.log(questionId);
     console.log(data);
     pushDb(data, "Events/");
     routeChange();
@@ -50,13 +74,13 @@ const Create = () => {
     trySampleRequest(form, true);
   };
 
-  const trySampleRequest = (form, responsesOrForm) => {
+  const trySampleRequest = (form, responsesOrForm, formDetails = null) => {
     var params = JSON.parse(localStorage.getItem("oauth2-test-params"));
     if (params && params["access_token"]) {
       var xhr = new XMLHttpRequest();
       var responses = "?";
       if (responsesOrForm == false) {
-        responses = "/repsonses?";
+        responses = "/responses?";
       }
       console.log(params);
       xhr.open(
@@ -70,8 +94,17 @@ const Create = () => {
       );
       xhr.onreadystatechange = function (i) {
         if (xhr.readyState === 4 && xhr.status === 200) {
-          //   console.log(xhr.response);
-          parseResponse(xhr.response);
+          console.log("api hit");
+          if (responsesOrForm == false) {
+            console.log(xhr.response);
+            parseResponse(formDetails, xhr.response);
+          }
+          //   parseResponse(xhr.response);
+          if (responsesOrForm == true) {
+            console.log(xhr.response);
+            // console.log("form Details: " + formDetails);
+            trySampleRequest(form, false, xhr.response);
+          }
         } else if (xhr.readyState === 4 && xhr.status === 403) {
           // Token invalid, so prompt for user permission.
           oauth2SignIn();
