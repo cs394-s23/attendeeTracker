@@ -23,7 +23,9 @@
     "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",
     "react-fontawesome": "^1.7.1",
-    "react-router-dom": "^6.11.1"
+    "react-router-dom": "^6.11.1",
+    "util": "^0.12.5",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
