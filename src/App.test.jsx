@@ -9,11 +9,4 @@ describe('onsite home page test', () => {
     expect(screen.getByText('Events')).toBeDefined();
   });
 
-//   test("Counter should increment by one when clicked", async () => {
-//     render(<App />);
-//     const counter = screen.getByRole('button');
-//     fireEvent.click(counter);
-//     expect(await screen.getByText('count is: 1')).toBeDefined();
-//   });
-
 });
