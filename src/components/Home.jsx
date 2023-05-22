@@ -4,7 +4,12 @@ import "../styles/Home.css";
 
 const Home = ({ data }) => {
   if (!data) {
-    return <h1>Data is loading...</h1>;
+    return (
+      <div>
+      <NavBar />
+      <h1 id="header"> Events </h1>
+    </div>
+    );
   }
   // console.log(data.Events);
   var newData = Object.values(data.Events);
