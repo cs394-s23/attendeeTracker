@@ -1,7 +1,13 @@
 import "../styles/dashInfoCard.css";
-import Card from "react-bootstrap/Card";
-
+import Card from "react-bootstrap/Card"
+import { addReminder } from "../utilities/googleFormApi";
+import Button from "react-bootstrap/Button";
 const DashInfoCard = ({ data }) => {
+
+  const sendReminder = (e) => {
+    addReminder(data.formId)
+    alert("Reminder Sent!")
+  }
   // SEMI HARD CODED FOR THE FIRST EVENT
   // data = data.Events[0];
   var splitDate = data.time.split("-");
@@ -18,6 +24,9 @@ const DashInfoCard = ({ data }) => {
           </p>
           <p>{data.details}</p>
         </Card.Text>
+        <Button variant="primary" onClick={sendReminder}>
+          Send Reminder
+        </Button>
       </Card.Body>
       <Card.Img className="dashInfoCard-image" src="calendar.png" />
     </Card>

@@ -41,7 +41,7 @@ export const db = getDatabase(app);
 //   // signInWithCredential(auth, GoogleAuthProvider.credential(
 //   //   '{"sub": "qEvli4msW0eDz5mSVO6j3W7i8w1k", "email": "tester@gmail.com", "displayName":"Test User", "email_verified": true}'
 //   // ));
-  
+
 //   // set flag to avoid connecting twice, e.g., because of an editor hot-reload
 //   windows.EMULATION = true;
 // }
@@ -73,19 +73,19 @@ const makeResult = (error) => {
 
 //pushes new data to firebase and returns its key
 
-                // var test = {
-                //   name: "Alex's Pizza Night 3",
-                //   host: "Alex Tang",
-                //   guests: 3,
-                //   profile_pic_url:
-                //     "https://imageio.forbes.com/specials-images/imageserve/602c09c9135a060af5e1a8f4/Face-with-Spiral-Eyes---a-new-Apple-emoji-/960x0.png?format=png&width=960",
-                //   place: "828 Noyes",
-                //   time: "April 25th",
-                // };
-                // pushDb(test, "Activities/");
+// var test = {
+//   name: "Alex's Pizza Night 3",
+//   host: "Alex Tang",
+//   guests: 3,
+//   profile_pic_url:
+//     "https://imageio.forbes.com/specials-images/imageserve/602c09c9135a060af5e1a8f4/Face-with-Spiral-Eyes---a-new-Apple-emoji-/960x0.png?format=png&width=960",
+//   place: "828 Noyes",
+//   time: "April 25th",
+// };
+// pushDb(test, "Activities/");
 
 export const pushDb = (data, path) => {
-  const newPostKey = uuid().slice(0,8)
+  const newPostKey = uuid().slice(0, 8)
   // const updates = {};
   data.key = newPostKey;
   // var lastIndex = 1;
@@ -109,10 +109,10 @@ export const updateLikes = (postId, like) => {
   console.log('here', postRef)
   runTransaction(postRef, (post) => {
     if (post) {
-      if(like){
+      if (like) {
         post.like_count++;
       }
-      else{
+      else {
         post.like_count--;
       }
     }
