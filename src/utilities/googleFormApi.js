@@ -196,6 +196,12 @@ export function oauth2SignIn() {
 }
 
 export const saveToken = () => {
+
+    var params = JSON.parse(localStorage.getItem("oauth2-test-params"));
+    if (params && params["access_token"]) {
+        return true
+    }
+
     var params = {};
     var regex = /([^&=]+)=([^&]*)/g,
         m;
@@ -205,7 +211,9 @@ export const saveToken = () => {
     if (Object.keys(params).length > 0) {
         localStorage.setItem("oauth2-test-params", JSON.stringify(params));
         // if (params["state"] && params["state"] == "try_sample_request") {
-        //   trySampleRequest();
+        //     return true
         // }
+
     }
+    else return false
 }

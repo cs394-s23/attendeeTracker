@@ -6,10 +6,12 @@ import NavBar from "./NavBar.jsx";
 import { useNavigate } from "react-router-dom";
 import "../styles/Create.css";
 import { pushDb } from "../utilities/firebase";
-import { trySampleRequest, saveToken } from "../utilities/googleFormApi";
+import {
+  trySampleRequest,
+  saveToken,
+  oauth2SignIn,
+} from "../utilities/googleFormApi";
 const Create = () => {
-
-
   let navigate = useNavigate();
   const routeChange = () => {
     let path = "/";
@@ -25,30 +27,31 @@ const Create = () => {
     e.preventDefault();
     const formData = new FormData(e.target),
       formDataObj = Object.fromEntries(formData.entries());
-    console.log("wait what " + e);
 
     var form = formDataObj.form;
     trySampleRequest(form, true);
     routeChange();
   };
 
- saveToken()
+  if (saveToken() == true) {
+    return (
+      <div>
+        <NavBar />
+        <Form id="form" onSubmit={test}>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Forms ID</Form.Label>
+            <Form.Control name="form" placeholder="Enter Forms ID" />
+          </Form.Group>
 
-  return (
-    <div>
-      <NavBar />
-      <Form id="form" onSubmit={test}>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Forms ID</Form.Label>
-          <Form.Control name="form" placeholder="Enter Forms ID" />
-        </Form.Group>
-
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
-    </div>
-  );
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+        </Form>
+      </div>
+    );
+  } else {
+    oauth2SignIn();
+  }
 };
 
 export default Create;
