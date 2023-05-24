@@ -18,11 +18,11 @@ const Home = ({ data }) => {
     navigate(path);
   };
   console.log(data)
-  var user = JSON.parse(localStorage.getItem("oauth2-test-params"))['user_id'];
-  var isUserThere = JSON.parse(localStorage.getItem("oauth2-test-params")).hasOwnProperty('user_id');
-  console.log(user)
-  console.log(isUserThere)
-  if (!data || !isUserThere) {
+  
+
+  var isParamsThere = localStorage.getItem("oauth2-test-params")
+  // console.log(isUserThere)
+  if (!data || !isParamsThere) {
     return (
       <div>
         <NavBar />
@@ -30,6 +30,16 @@ const Home = ({ data }) => {
       </div>
     );
   }
+  // var isUserThere = JSON.parse(localStorage.getItem("oauth2-test-params")).hasOwnProperty('user_id');
+  // if (!UserThere) {
+  //   return (
+  //     <div>
+  //       <NavBar />
+  //       <h1 id="header"> Events </h1>
+  //     </div>
+  //   );
+  // }
+  var user = JSON.parse(localStorage.getItem("oauth2-test-params"))['user_id'];
 
   
 
