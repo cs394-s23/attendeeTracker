@@ -49,7 +49,7 @@ const parseResponse = (e, v, isUserPresent) => {
     console.log(questionId);
     console.log(data);
     // console.log()
-    var user = JSON.parse(localStorage.getItem("oauth2-test-params"))['email'].split("@")[0];
+    var user = JSON.parse(localStorage.getItem("oauth2-test-params"))['user_id'];
 
     console.log('user is ' + user)
     if(!isUserPresent) {
@@ -141,7 +141,7 @@ export const getUserInfo = (params) => {
             );
             xhr.onreadystatechange = function (i) {
                 if (xhr.readyState === 4 && xhr.status === 200) {
-                    resolve(JSON.parse(xhr.response).email)
+                    resolve(JSON.parse(xhr.response).id)
                     // resolve(xhr.response.email);
                 } else if (xhr.readyState === 4 && xhr.status === 403) {
                     // Token invalid, so prompt for user permission.
@@ -269,9 +269,9 @@ export const saveToken = () => {
     }
     if (Object.keys(params).length > 0) {
         console.log(params)
-        getUserInfo(params).then( (email) => {
-            params['email'] = email
-            console.log(email)
+        getUserInfo(params).then( (id) => {
+            params['user_id'] = id
+            console.log(id)
             localStorage.setItem("oauth2-test-params", JSON.stringify(params));
             return true
         })
