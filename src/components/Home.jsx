@@ -21,20 +21,16 @@ const Home = ({ data }) => {
       <div className="feed">
       {newData.filter(post => parseInt(post.time[0]) - 1 >= new Date().getMonth() &&
                                 parseInt(post.time.substring(2,4)) - 1 >= new Date().getDate() &&
-                                parseInt(post.time.substring(5,7)) + 2000 >= new Date().getFullYear() &&
-                                parseInt(post.time.substring(8,10)) - 1 >= new Date().getHours() ||
-                                parseInt(post.time.substring(11)) - 1 >= new Date().getMinutes()
+                                parseInt(post.time.substring(5,7)) + 2000 >= new Date().getFullYear()
                                 ).map((event, index) => (
           <Event data={event} key={index} />
         ))}
       </div>
       <h1 id="header"> Past Events </h1>
       <div className="feed">
-        {newData.filter(post => parseInt(post.time[0]) - 1 < new Date().getMonth() &&
+        {newData.filter(post => parseInt(post.time[0]) - 1 <= new Date().getMonth() &&
                                 parseInt(post.time.substring(2,4)) - 1 < new Date().getDate() &&
-                                parseInt(post.time.substring(5,7)) + 2000 < new Date().getFullYear() &&
-                                parseInt(post.time.substring(8,10)) - 1 < new Date().getHours() ||
-                                parseInt(post.time.substring(11)) - 1 < new Date().getMinutes()
+                                parseInt(post.time.substring(5,7)) + 2000 <= new Date().getFullYear()
                                 ).map((event, index) => (
           <Event data={event} key={index} />
         ))}
