@@ -3,7 +3,7 @@ import { pushDb, useDbData, pushUsertoDb } from "../utilities/firebase";
 
 var YOUR_CLIENT_ID =
     "830241005429-o7l0fqrcdqp9ef44qc8upa6j3510vbvr.apps.googleusercontent.com";
-var YOUR_REDIRECT_URI = "http://localhost:5173";
+var YOUR_REDIRECT_URI = "localhost:5173";
 var fragmentString = location.hash.substring(1);
 
 
@@ -12,17 +12,27 @@ const countAnswers = (e, questionId) => {
     var not_going = 0;
     var maybe = 0;
     // console.log(e);
-    for (var i = 0; i < e.responses.length; i++) {
-        var ind_response =
-            e.responses[i].answers[questionId].textAnswers.answers[0].value;
-        if (ind_response == "Yes") going = going + 1;
-        else if (ind_response == "No") not_going = not_going + 1;
-        else maybe = maybe + 1;
+    if (e.responses) {
+        for (var i = 0; i < e.responses.length; i++) {
+            var ind_response =
+                e.responses[i].answers[questionId].textAnswers.answers[0].value;
+            if (ind_response == "Yes") going = going + 1;
+            else if (ind_response == "No") not_going = not_going + 1;
+            else maybe = maybe + 1;
+        }
+
+        var result = {};
+        result["attending"] = going;
+        result["no_response"] = maybe;
+        result["not_attending"] = not_going;
+    } else {
+        var result = {};
+        result["attending"] = 0;
+        result["no_response"] = 0;
+        result["not_attending"] = 0;
     }
-    var result = {};
-    result["attending"] = going;
-    result["no_response"] = maybe;
-    result["not_attending"] = not_going;
+    
+    
 
 
 
@@ -128,7 +138,7 @@ export const addReminder = (form) => {
 
 export const getUserInfo = (params) => {
     if (params && params["access_token"]) {
-
+        console.log('in user info')
         return new Promise(function (resolve, reject) {
 
             var xhr = new XMLHttpRequest();

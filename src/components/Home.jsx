@@ -17,8 +17,12 @@ const Home = ({ data }) => {
     let path = "/create";
     navigate(path);
   };
-
-  if (!data) {
+  console.log(data)
+  var user = JSON.parse(localStorage.getItem("oauth2-test-params"))['user_id'];
+  var isUserThere = JSON.parse(localStorage.getItem("oauth2-test-params")).hasOwnProperty('user_id');
+  console.log(user)
+  console.log(isUserThere)
+  if (!data || !isUserThere) {
     return (
       <div>
         <NavBar />
@@ -26,8 +30,11 @@ const Home = ({ data }) => {
       </div>
     );
   }
+
+  
+
   // console.log(data.Events);
-  var newData = Object.values(data.Events);
+  var newData = Object.values(data[user]);
 
   // getUserInfo();
   return (
