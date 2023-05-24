@@ -1,13 +1,13 @@
 import "../styles/dashInfoCard.css";
-import Card from "react-bootstrap/Card"
+import Card from "react-bootstrap/Card";
 import { addReminder } from "../utilities/googleFormApi";
 import Button from "react-bootstrap/Button";
 const DashInfoCard = ({ data }) => {
-
   const sendReminder = (e) => {
-    addReminder(data.formId)
-    alert("Reminder Sent!")
-  }
+    //first check if question is already sent
+    addReminder(data.formId);
+    window.location.reload(false);
+  };
   // SEMI HARD CODED FOR THE FIRST EVENT
   // data = data.Events[0];
   var splitDate = data.time.split("-");

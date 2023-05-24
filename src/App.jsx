@@ -8,6 +8,7 @@ import NavBar from "./components/NavBar";
 import Home from "./components/Home";
 import Create from "./components/Create.jsx";
 import { Link, BrowserRouter, Route, Routes } from "react-router-dom";
+import SignIn from "./components/SignIn";
 
 import { useDbData } from "./utilities/firebase";
 
@@ -20,10 +21,18 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route
-            path="/"
+            path="/home"
             element={
               <div>
                 <Home data={data} />
+              </div>
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <div>
+                <SignIn />
               </div>
             }
           />

@@ -14,7 +14,7 @@ import {
 const Create = () => {
   let navigate = useNavigate();
   const routeChange = () => {
-    let path = "/";
+    let path = "/home";
     navigate(path);
   };
 
@@ -33,25 +33,26 @@ const Create = () => {
     routeChange();
   };
 
-  if (saveToken() == true) {
-    return (
-      <div>
-        <NavBar />
-        <Form id="form" onSubmit={test}>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Forms ID</Form.Label>
-            <Form.Control name="form" placeholder="Enter Forms ID" />
-          </Form.Group>
+  // if (saveToken() == true) {
+  //   console.log("logged in");
+  return (
+    <div>
+      <NavBar />
+      <Form id="form" onSubmit={test}>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Forms ID</Form.Label>
+          <Form.Control name="form" placeholder="Enter Forms ID" />
+        </Form.Group>
 
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-        </Form>
-      </div>
-    );
-  } else {
-    oauth2SignIn();
-  }
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
+    </div>
+  );
+  // } else {
+  //   oauth2SignIn();
+  // }
 };
 
 export default Create;

@@ -95,6 +95,13 @@ export const pushDb = (data, path) => {
   var key = set(ref(db, path + newPostKey), data);
 };
 
+export const pushDbWithUsername = (data, path, user) => {
+  const newPostKey = uuid().slice(0, 8)
+  // const updates = {};
+  data.key = newPostKey;
+  var key = set(ref())
+}
+
 export const pushUsertoDb = (data, path, uid) => {
   // var lastIndex = 1;
   // updates['/' + path + lastIndex] = data;

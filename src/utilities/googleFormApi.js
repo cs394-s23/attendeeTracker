@@ -2,7 +2,7 @@ import { pushDb } from "../utilities/firebase";
 
 var YOUR_CLIENT_ID =
     "830241005429-o7l0fqrcdqp9ef44qc8upa6j3510vbvr.apps.googleusercontent.com";
-var YOUR_REDIRECT_URI = "http://localhost:5173/create";
+var YOUR_REDIRECT_URI = "http://localhost:5173";
 var fragmentString = location.hash.substring(1);
 
 
@@ -114,9 +114,44 @@ export const addReminder = (form) => {
     }
 };
 
+export const getUserInfo = (params) => {
+    if (params && params["access_token"]) {
+
+        return new Promise(function (resolve, reject) {
+
+            var xhr = new XMLHttpRequest();
+            console.log(params);
+            xhr.open(
+                "GET",
+                "https://www.googleapis.com/oauth2/v1/userinfo?" +
+                "access_token=" +
+                params["access_token"]
+            );
+            xhr.onreadystatechange = function (i) {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    resolve(JSON.parse(xhr.response).email)
+                    // resolve(xhr.response.email);
+                } else if (xhr.readyState === 4 && xhr.status === 403) {
+                    // Token invalid, so prompt for user permission.
+                    // oauth2SignIn();
+                } else if (xhr.readyState === 4 && xhr.status === 401) {
+                    // Token invalid, so prompt for user permission.
+                    // oauth2SignIn();
+                }
+            };
+            xhr.send(null);
+        });
+
+    } else {
+        // console.log('not logged in')
+        // oauth2SignIn();
+    }
+}
+
 export const trySampleRequest = (form, responsesOrForm, formDetails = null) => {
     var params = JSON.parse(localStorage.getItem("oauth2-test-params"));
     if (params && params["access_token"]) {
+        console.log(params)
         var xhr = new XMLHttpRequest();
         var responses = "?";
         if (responsesOrForm == false) {
@@ -146,16 +181,16 @@ export const trySampleRequest = (form, responsesOrForm, formDetails = null) => {
                 }
             } else if (xhr.readyState === 4 && xhr.status === 403) {
                 // Token invalid, so prompt for user permission.
-                oauth2SignIn();
+                // oauth2SignIn();
             } else if (xhr.readyState === 4 && xhr.status === 401) {
                 // Token invalid, so prompt for user permission.
-                oauth2SignIn();
+                // oauth2SignIn();
             }
         };
         xhr.send(null);
     } else {
-        console.log('not logged in')
-        oauth2SignIn();
+        // console.log('not logged in')
+        // oauth2SignIn();
     }
 };
 
@@ -163,37 +198,49 @@ export const trySampleRequest = (form, responsesOrForm, formDetails = null) => {
  * Create form to request access token from Google's OAuth 2.0 server.
  */
 export function oauth2SignIn() {
-    // Google's OAuth 2.0 endpoint for requesting an access token
-    var oauth2Endpoint = "https://accounts.google.com/o/oauth2/v2/auth";
+    return new Promise(function (resolve, reject) { 
+        // Google's OAuth 2.0 endpoint for requesting an access token
+        // var url = "https://accounts.google.com/o/oauth2/v2/auth?" +
+        // "scope=https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/userinfo.profile&" + 
+        // "include_granted_scopes=true&" +
+        // "response_type=token&+"
+        // "state=state_parameter_passthrough_value&"+
+        // "redirect_uri=" + YOUR_REDIRECT_URI + "&"+
+        // "client_id=" + YOUR_CLIENT_ID
 
-    // Create element to open OAuth 2.0 endpoint in new window.
-    var form = document.createElement("form");
-    form.setAttribute("method", "GET"); // Send as a GET request.
-    form.setAttribute("action", oauth2Endpoint);
+        var oauth2Endpoint = "https://accounts.google.com/o/oauth2/v2/auth";
 
-    // Parameters to pass to OAuth 2.0 endpoint.
-    var params = {
-        client_id: YOUR_CLIENT_ID,
-        redirect_uri: YOUR_REDIRECT_URI,
-        scope: "https://www.googleapis.com/auth/drive",
-        state: "try_sample_request",
-        include_granted_scopes: "true",
-        response_type: "token",
-    };
+        // Create element to open OAuth 2.0 endpoint in new window.
+        var form = document.createElement("form");
+        form.setAttribute("method", "GET"); // Send as a GET request.
+        form.setAttribute("action", oauth2Endpoint);
 
-    // Add form parameters as hidden input values.
-    for (var p in params) {
-        var input = document.createElement("input");
-        input.setAttribute("type", "hidden");
-        input.setAttribute("name", p);
-        input.setAttribute("value", params[p]);
-        form.appendChild(input);
-    }
+        // Parameters to pass to OAuth 2.0 endpoint.
+        var params = {
+            client_id: YOUR_CLIENT_ID,
+            redirect_uri: YOUR_REDIRECT_URI,
+            scope: "https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/userinfo.profile",
+            state: "try_sample_request",
+            include_granted_scopes: "true",
+            response_type: "token",
+        };
 
-    // Add form to page and submit it to open the OAuth 2.0 endpoint.
-    document.body.appendChild(form);
-    form.submit();
+        // Add form parameters as hidden input values.
+        for (var p in params) {
+            var input = document.createElement("input");
+            input.setAttribute("type", "hidden");
+            input.setAttribute("name", p);
+            input.setAttribute("value", params[p]);
+            form.appendChild(input);
+        }
+
+        // Add form to page and submit it to open the OAuth 2.0 endpoint.
+        document.body.appendChild(form);
+        form.submit()
+
+    });
 }
+
 
 export const saveToken = () => {
 
@@ -209,11 +256,22 @@ export const saveToken = () => {
         params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
     }
     if (Object.keys(params).length > 0) {
-        localStorage.setItem("oauth2-test-params", JSON.stringify(params));
+        console.log(params)
+        getUserInfo(params).then( (email) => {
+            params['email'] = email
+            console.log(email)
+            localStorage.setItem("oauth2-test-params", JSON.stringify(params));
+            return true
+        })
         // if (params["state"] && params["state"] == "try_sample_request") {
         //     return true
         // }
-
     }
-    else return false
+    console.log(' no params ');
+    return false;
+}
+
+const signOut = () => {
+    localStorage.removeItem("oauth2-test-params");
+
 }
