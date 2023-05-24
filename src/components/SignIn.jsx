@@ -3,6 +3,7 @@ import Event from "./Event";
 import "../styles/Home.css";
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+// import { Reminder } from "./Reminder";
 
 import {
   saveToken,
