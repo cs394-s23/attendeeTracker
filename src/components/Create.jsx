@@ -29,7 +29,7 @@ const Create = (data) => {
       formDataObj = Object.fromEntries(formData.entries());
 
     var form = formDataObj.form;
-    var user = localStorage.getItem("oauth2-test-params").email;
+    var user = localStorage.getItem("oauth2-test-params").user_id;
     var inDatabase = data.hasOwnProperty(user);
     console.log(inDatabase);
     if (inDatabase == false) {

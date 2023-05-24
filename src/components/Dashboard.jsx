@@ -13,8 +13,8 @@ const Dashboard = ({ data }) => {
     return <h1>Data is loading...</h1>;
   }
   console.log("hi" + data);
-
-  data = data.Events[eventId];
+  var user = JSON.parse(localStorage.getItem("oauth2-test-params"))['user_id'];
+  data = data[user][eventId];
 
 
 
