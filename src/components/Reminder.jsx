@@ -7,7 +7,7 @@ const templateID = 'template_pgii825';
 const publicKey = 'V3iGvRLEXLu2d7Qqs';
 
 // for testing
-const templateParams = { to_name: "", from_name: "", message: "", to_email: "ericma2024@u.northwestern.edu" };  
+const templateParams = { to_name: "", from_name: "", message: "", to_email: "attendeetracker.testing", bcc_list: "joshualevitas2022@u.northwestern.edu, ericma2024@u.northwestern.edu, joshualevitasschool@gmail.com" };  
 
 const sendEmail = () => {
     emailjs.send(serviceID, templateID, templateParams, publicKey)
