@@ -11,7 +11,7 @@ import {
   saveToken,
   oauth2SignIn,
 } from "../utilities/googleFormApi";
-const Create = () => {
+const Create = (data) => {
   let navigate = useNavigate();
   const routeChange = () => {
     let path = "/home";
@@ -29,8 +29,14 @@ const Create = () => {
       formDataObj = Object.fromEntries(formData.entries());
 
     var form = formDataObj.form;
-    trySampleRequest(form, true);
-    routeChange();
+    var user = localStorage.getItem("oauth2-test-params").email;
+    var inDatabase = data.hasOwnProperty(user);
+    console.log(inDatabase);
+    if (inDatabase == false) {
+      console.log("in database is null");
+      trySampleRequest(form, true, null, false);
+    } else trySampleRequest(form, true, null, true);
+    // routeChange();
   };
 
   // if (saveToken() == true) {

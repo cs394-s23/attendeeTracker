@@ -1,4 +1,5 @@
-import { pushDb } from "../utilities/firebase";
+import { pushDb, useDbData, pushUsertoDb } from "../utilities/firebase";
+
 
 var YOUR_CLIENT_ID =
     "830241005429-o7l0fqrcdqp9ef44qc8upa6j3510vbvr.apps.googleusercontent.com";
@@ -23,10 +24,12 @@ const countAnswers = (e, questionId) => {
     result["no_response"] = maybe;
     result["not_attending"] = not_going;
 
+
+
     return result;
 };
 
-const parseResponse = (e, v) => {
+const parseResponse = (e, v, isUserPresent) => {
     // console.log(e);
     // console.log(v);
     var e = JSON.parse(e);
@@ -45,7 +48,16 @@ const parseResponse = (e, v) => {
     data["count"] = going;
     console.log(questionId);
     console.log(data);
-    pushDb(data, "Events/");
+    // console.log()
+    var user = JSON.parse(localStorage.getItem("oauth2-test-params"))['email'].split("@")[0];
+
+    console.log('user is ' + user)
+    if(!isUserPresent) {
+        console.log('user not present, adding to firebase')
+        pushUsertoDb(user, "/" + user)
+    }
+    
+    pushDb(data, "/" + user + "/");
 };
 
 
@@ -148,7 +160,7 @@ export const getUserInfo = (params) => {
     }
 }
 
-export const trySampleRequest = (form, responsesOrForm, formDetails = null) => {
+export const trySampleRequest = (form, responsesOrForm, formDetails = null, isUserPresent = false) => {
     var params = JSON.parse(localStorage.getItem("oauth2-test-params"));
     if (params && params["access_token"]) {
         console.log(params)
@@ -172,12 +184,12 @@ export const trySampleRequest = (form, responsesOrForm, formDetails = null) => {
                 console.log("api hit");
                 if (responsesOrForm == false) {
                     console.log(xhr.response);
-                    parseResponse(formDetails, xhr.response);
+                    parseResponse(formDetails, xhr.response, isUserPresent);
                 }
                 //   parseResponse(xhr.response);
                 if (responsesOrForm == true) {
                     console.log(xhr.response);
-                    trySampleRequest(form, false, xhr.response);
+                    trySampleRequest(form, false, xhr.response, isUserPresent);
                 }
             } else if (xhr.readyState === 4 && xhr.status === 403) {
                 // Token invalid, so prompt for user permission.

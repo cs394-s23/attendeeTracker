@@ -46,7 +46,7 @@ function App() {
             }
           />
 
-          <Route path="/create" element={<Create />} />
+          <Route path="/create" element={<Create data={data} />} />
         </Routes>
       </BrowserRouter>
     </>
