@@ -33,17 +33,17 @@ const Home = ({ data }) => {
       </div>
     );
   }
-  // var isUserThere = JSON.parse(localStorage.getItem("oauth2-test-params")).hasOwnProperty('user_id');
-  // if (!UserThere) {
-  //   return (
-  //     <div>
-  //       <NavBar />
-  //       <h1 id="header"> Events </h1>
-  //     </div>
-  //   );
-  // }
+
   var user = JSON.parse(localStorage.getItem("oauth2-test-params"))["user_id"];
 
+  if (!data.hasOwnProperty(user)) {
+    return (
+      <div>
+        <NavBar />
+        <h1 id="header"> No Current Events </h1>
+      </div>
+    );
+  }
   // console.log(data.Events);
   var newData = Object.values(data[user]);
 
