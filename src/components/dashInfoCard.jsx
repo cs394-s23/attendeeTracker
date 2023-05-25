@@ -5,9 +5,11 @@ import { trySampleRequest } from "../utilities/googleFormApi";
 import Button from "react-bootstrap/Button";
 const DashInfoCard = ({ data }) => {
   const sendReminder = (e) => {
+    e.preventDefault();
     //first check if question is already sent
-    addReminder(data.formId);
+    if (!data.hasOwnProperty("reminder_count")) addReminder(data.formId);
     window.location.reload(false);
+    refreshData();
   };
 
   const refreshData = (e) => {
@@ -15,10 +17,8 @@ const DashInfoCard = ({ data }) => {
     var formId = data.formId;
     console.log(data.key);
     trySampleRequest(formId, true, null, true, data.key);
-    window.location.reload(false);
   };
-  // SEMI HARD CODED FOR THE FIRST EVENT
-  // data = data.Events[0];
+
   var splitDate = data.time.split("-");
   console.log(splitDate);
   return (

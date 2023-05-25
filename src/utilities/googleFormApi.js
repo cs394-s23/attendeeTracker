@@ -13,7 +13,13 @@ const countAnswers = (e, questionId) => {
     var maybe = 0;
     // console.log(e);
     if (e.responses) {
+        console.log(e.responses)
         for (var i = 0; i < e.responses.length; i++) {
+            if(!e.responses[i].answers.hasOwnProperty(questionId)) {
+                maybe++;
+                continue;
+            }
+
             var ind_response =
                 e.responses[i].answers[questionId].textAnswers.answers[0].value;
             if (ind_response == "Yes") going = going + 1;
@@ -52,13 +58,25 @@ const parseResponse = (e, v, isUserPresent, eventId) => {
     var going = countAnswers(v, questionId);
     console.log(going)
 
+    var reminder_going = {}
+    if(e.items.length > 3) {
+        console.log('in here')
+        console.log(e.items)
+        var reminderId = e.items[3].questionItem.question.questionId;
+        console.log(reminderId)
+        reminder_going = countAnswers(v, reminderId)
+    }
+
+    data["reminder_count"] = reminder_going
+
+
     data["count"] = going;
     console.log(questionId);
     console.log(data);
     // console.log()
     var user = JSON.parse(localStorage.getItem("oauth2-test-params"))['user_id'];
 
-    console.log('user is ' + user)
+    // console.log('user is ' + user)
     if(!isUserPresent) {
         console.log('user not present, adding to firebase')
         pushUsertoDb(user, "/" + user)
@@ -189,7 +207,6 @@ export const trySampleRequest = (form, responsesOrForm, formDetails = null, isUs
             "https://forms.googleapis.com/v1/forms/" +
             form +
             responses +
-            //"https://www.googleapis.com/drive/v3/about?fields=user&" +
             "access_token=" +
             params["access_token"]
         );
