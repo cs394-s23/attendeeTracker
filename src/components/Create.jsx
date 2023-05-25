@@ -18,6 +18,7 @@ const Create = (data) => {
     navigate(path);
   };
 
+  data = data.data;
   // Parse query string to see if page request is coming from OAuth 2.0 server.
 
   // If there's an access token, try an API request.
@@ -25,18 +26,22 @@ const Create = (data) => {
 
   const test = (e) => {
     e.preventDefault();
+    console.log(data);
     const formData = new FormData(e.target),
       formDataObj = Object.fromEntries(formData.entries());
 
     var form = formDataObj.form;
-    var user = localStorage.getItem("oauth2-test-params").email;
+    var user = JSON.parse(localStorage.getItem("oauth2-test-params"))[
+      "user_id"
+    ];
+
     var inDatabase = data.hasOwnProperty(user);
     console.log(inDatabase);
     if (inDatabase == false) {
       console.log("in database is null");
       trySampleRequest(form, true, null, false);
     } else trySampleRequest(form, true, null, true);
-    // routeChange();
+    routeChange();
   };
 
   // if (saveToken() == true) {

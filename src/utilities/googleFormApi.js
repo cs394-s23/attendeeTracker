@@ -12,17 +12,27 @@ const countAnswers = (e, questionId) => {
     var not_going = 0;
     var maybe = 0;
     // console.log(e);
-    for (var i = 0; i < e.responses.length; i++) {
-        var ind_response =
-            e.responses[i].answers[questionId].textAnswers.answers[0].value;
-        if (ind_response == "Yes") going = going + 1;
-        else if (ind_response == "No") not_going = not_going + 1;
-        else maybe = maybe + 1;
+    if (e.responses) {
+        for (var i = 0; i < e.responses.length; i++) {
+            var ind_response =
+                e.responses[i].answers[questionId].textAnswers.answers[0].value;
+            if (ind_response == "Yes") going = going + 1;
+            else if (ind_response == "No") not_going = not_going + 1;
+            else maybe = maybe + 1;
+        }
+
+        var result = {};
+        result["attending"] = going;
+        result["no_response"] = maybe;
+        result["not_attending"] = not_going;
+    } else {
+        var result = {};
+        result["attending"] = 0;
+        result["no_response"] = 0;
+        result["not_attending"] = 0;
     }
-    var result = {};
-    result["attending"] = going;
-    result["no_response"] = maybe;
-    result["not_attending"] = not_going;
+    
+    
 
 
 
@@ -49,7 +59,7 @@ const parseResponse = (e, v, isUserPresent) => {
     console.log(questionId);
     console.log(data);
     // console.log()
-    var user = JSON.parse(localStorage.getItem("oauth2-test-params"))['email'].split("@")[0];
+    var user = JSON.parse(localStorage.getItem("oauth2-test-params"))['user_id'];
 
     console.log('user is ' + user)
     if(!isUserPresent) {
@@ -128,7 +138,7 @@ export const addReminder = (form) => {
 
 export const getUserInfo = (params) => {
     if (params && params["access_token"]) {
-
+        console.log('in user info')
         return new Promise(function (resolve, reject) {
 
             var xhr = new XMLHttpRequest();
@@ -141,7 +151,7 @@ export const getUserInfo = (params) => {
             );
             xhr.onreadystatechange = function (i) {
                 if (xhr.readyState === 4 && xhr.status === 200) {
-                    resolve(JSON.parse(xhr.response).email)
+                    resolve(JSON.parse(xhr.response).id)
                     // resolve(xhr.response.email);
                 } else if (xhr.readyState === 4 && xhr.status === 403) {
                     // Token invalid, so prompt for user permission.
@@ -256,31 +266,33 @@ export function oauth2SignIn() {
 
 export const saveToken = () => {
 
-    var params = JSON.parse(localStorage.getItem("oauth2-test-params"));
-    if (params && params["access_token"]) {
-        return true
-    }
+    return new Promise(function (resolve, reject) {
+        console.log('how many times called')
+        var params = JSON.parse(localStorage.getItem("oauth2-test-params"));
+        if (params && params["access_token"]) {
+            resolve(true)
+        }
 
-    var params = {};
-    var regex = /([^&=]+)=([^&]*)/g,
-        m;
-    while ((m = regex.exec(fragmentString))) {
-        params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
-    }
-    if (Object.keys(params).length > 0) {
-        console.log(params)
-        getUserInfo(params).then( (email) => {
-            params['email'] = email
-            console.log(email)
-            localStorage.setItem("oauth2-test-params", JSON.stringify(params));
-            return true
-        })
-        // if (params["state"] && params["state"] == "try_sample_request") {
-        //     return true
-        // }
-    }
-    console.log(' no params ');
-    return false;
+        var params = {};
+        var regex = /([^&=]+)=([^&]*)/g,
+            m;
+        while ((m = regex.exec(fragmentString))) {
+            params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+        }
+        if (Object.keys(params).length > 0) {
+            getUserInfo(params).then( (id) => {
+                params['user_id'] = id
+                console.log(id)
+                localStorage.setItem("oauth2-test-params", JSON.stringify(params));
+                resolve(true)
+            })
+            // if (params["state"] && params["state"] == "try_sample_request") {
+            //     return true
+            // }
+        }
+        // console.log(' no params ');
+        // resolve(false);
+    });
 }
 
 const signOut = () => {
