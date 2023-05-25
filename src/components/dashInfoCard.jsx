@@ -1,11 +1,20 @@
 import "../styles/dashInfoCard.css";
 import Card from "react-bootstrap/Card";
 import { addReminder } from "../utilities/googleFormApi";
+import { trySampleRequest } from "../utilities/googleFormApi";
 import Button from "react-bootstrap/Button";
 const DashInfoCard = ({ data }) => {
   const sendReminder = (e) => {
     //first check if question is already sent
     addReminder(data.formId);
+    window.location.reload(false);
+  };
+
+  const refreshData = (e) => {
+    console.log(data);
+    var formId = data.formId;
+    console.log(data.key);
+    trySampleRequest(formId, true, null, true, data.key);
     window.location.reload(false);
   };
   // SEMI HARD CODED FOR THE FIRST EVENT
@@ -24,9 +33,14 @@ const DashInfoCard = ({ data }) => {
           </p>
           <p>{data.details}</p>
         </Card.Text>
-        <Button variant="primary" onClick={sendReminder}>
-          Send Reminder
-        </Button>
+        <div id="buttons">
+          <Button variant="primary" onClick={sendReminder} className="button">
+            Send Reminder
+          </Button>
+          <Button variant="primary" onClick={refreshData}>
+            Refresh Data
+          </Button>
+        </div>
       </Card.Body>
       <Card.Img className="dashInfoCard-image" src="calendar.png" />
     </Card>

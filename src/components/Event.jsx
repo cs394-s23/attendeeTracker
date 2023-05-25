@@ -1,6 +1,7 @@
 import "../styles/Event.css";
 import { useNavigate } from "react-router-dom";
 import Card from "react-bootstrap/Card";
+import { trySampleRequest } from "../utilities/googleFormApi";
 
 const Event = (data, key) => {
   data = data.data;
@@ -8,6 +9,9 @@ const Event = (data, key) => {
   let navigate = useNavigate();
   const routeChange = () => {
     let path = "/" + data.key;
+    var formId = data.formId;
+    console.log(data.key);
+    trySampleRequest(formId, true, null, true, data.key);
     navigate(path);
   };
 

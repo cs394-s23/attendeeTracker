@@ -1,45 +1,50 @@
 .dashInfoCard {
-    background-color: #fff;
-    border-radius: 0.5rem;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-    padding: 1.5rem;
-    text-align: left;
-    width: 600px;
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: row;
-    
-    height: 250px;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  padding: 1.5rem;
+  text-align: left;
+  width: 600px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
 
-    /* border: 1px solid red; */
+  height: 250px;
 
-    
+  /* border: 1px solid red; */
 }
 
 .dashInfoCard-body {
-    display: flex;
-    flex-direction: column;
-    max-width: 60%;
-    /* border: 1px solid red; */
-    text-overflow: ellipsis;
-    overflow: scroll;
-    /* border: 1px solid green; */
+  display: flex;
+  flex-direction: column;
+  max-width: 60%;
+  /* border: 1px solid red; */
+  text-overflow: ellipsis;
+  overflow: scroll;
+  /* border: 1px solid green; */
 }
 
 .dashInfoCard-body::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .dashInfoCard-image {
-    width: 200px;
-    height: auto;
-    /* border: 1px solid green; */
-
+  width: 200px;
+  height: auto;
+  /* border: 1px solid green; */
 }
 
-
 .dashInfoCard-title {
-    font-size: 1.5rem;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+#buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.button {
+  margin-right: 5px;
 }

@@ -95,6 +95,9 @@ export const pushDb = (data, path) => {
   var key = set(ref(db, path + newPostKey), data);
 };
 
+export const setDb = (data, path) => {
+  set(ref(db, path), data);
+}
 
 export const pushUsertoDb = (email, path) => {
   // var lastIndex = 1;

@@ -1,4 +1,4 @@
-import { pushDb, useDbData, pushUsertoDb } from "../utilities/firebase";
+import { pushDb, useDbData, pushUsertoDb, setDb } from "../utilities/firebase";
 
 
 var YOUR_CLIENT_ID =
@@ -32,14 +32,10 @@ const countAnswers = (e, questionId) => {
         result["not_attending"] = 0;
     }
     
-    
-
-
-
     return result;
 };
 
-const parseResponse = (e, v, isUserPresent) => {
+const parseResponse = (e, v, isUserPresent, eventId) => {
     // console.log(e);
     // console.log(v);
     var e = JSON.parse(e);
@@ -54,6 +50,7 @@ const parseResponse = (e, v, isUserPresent) => {
     console.log(data["details"]);
     var questionId = e.items[2].questionItem.question.questionId;
     var going = countAnswers(v, questionId);
+    console.log(going)
 
     data["count"] = going;
     console.log(questionId);
@@ -66,8 +63,15 @@ const parseResponse = (e, v, isUserPresent) => {
         console.log('user not present, adding to firebase')
         pushUsertoDb(user, "/" + user)
     }
+    console.log('event id here')
+    console.log(eventId)
+
+    if(eventId != null) {
+        data["key"] = eventId
+        setDb(data, "/"+ user +"/" + eventId)
+    }
     
-    pushDb(data, "/" + user + "/");
+    else pushDb(data, "/" + user + "/");
 };
 
 
@@ -170,7 +174,7 @@ export const getUserInfo = (params) => {
     }
 }
 
-export const trySampleRequest = (form, responsesOrForm, formDetails = null, isUserPresent = false) => {
+export const trySampleRequest = (form, responsesOrForm, formDetails = null, isUserPresent = false, eventId = null) => {
     var params = JSON.parse(localStorage.getItem("oauth2-test-params"));
     if (params && params["access_token"]) {
         console.log(params)
@@ -194,12 +198,14 @@ export const trySampleRequest = (form, responsesOrForm, formDetails = null, isUs
                 console.log("api hit");
                 if (responsesOrForm == false) {
                     console.log(xhr.response);
-                    parseResponse(formDetails, xhr.response, isUserPresent);
+                    console.log('event id' + eventId)
+                    parseResponse(formDetails, xhr.response, isUserPresent, eventId);
                 }
                 //   parseResponse(xhr.response);
                 if (responsesOrForm == true) {
                     console.log(xhr.response);
-                    trySampleRequest(form, false, xhr.response, isUserPresent);
+                    console.log('event id' + eventId)
+                    trySampleRequest(form, false, xhr.response, isUserPresent, eventId);
                 }
             } else if (xhr.readyState === 4 && xhr.status === 403) {
                 // Token invalid, so prompt for user permission.
