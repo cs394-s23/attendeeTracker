@@ -16,39 +16,74 @@ const NavBar = () => {
     console.log("hi");
   };
 
-  if (signedIn)
-    return (
-      <Navbar bg="light" expand="lg">
-        <Container>
-          <Navbar.Brand href="/home">AttendeeTracker</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link href="/home">Home</Nav.Link>
-              <Nav.Link href="/create">Add Event</Nav.Link>
-              <Nav.Link href="/" onClick={signOut}>
-                Sign Out
-              </Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-    );
-  else
-    return (
-      <Navbar bg="light" expand="lg">
-        <Container>
-          <Navbar.Brand href="/">AttendeeTracker</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/">Add Event</Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-    );
+
+  return (
+
+    <nav className="w-full flex items-center py-4 fixed top-0 z-20 px-6" style={{ backgroundColor: "#48b96f", display: "flex", alignItems: "center"}}>
+        <Nav.Link href="/home">
+          <div className="flex items-center justify-between w-full max-w-7xl mx-auto" style={{ display: "flex",  alignItems: "flex-start", paddingLeft: 40 }}>
+              <img src="/logo-white.png" alt="logo" className="w-9 h-9 object-contain" style={{ width: 200 }} /> {/* roughly size 58 */}
+              {/* <h1 className="title" style={{ fontFamily: "mont-semibold", fontSize: 30, color: "white", marginTop: 10, marginLeft: 40}}> Attendee Tracker</h1> */}
+          </div>
+        </Nav.Link>
+        
+        <div style={{marginLeft: 50, marginTop: 7, display: "flex"}}>
+
+          <Nav.Link href="/home">
+            <h3 style={{fontSize: 20, color: "white", marginRight: 20}}>Home</h3>
+          </Nav.Link>
+
+          <Nav.Link href="/create">
+            <h3 style={{fontSize: 20, color: "white"}}>Add Event</h3>
+          </Nav.Link>
+          
+          {signedIn ?
+            <Nav.Link href="/" onClick={signOut}>
+              <h3 style={{fontSize: 20, color: "white", marginLeft: 20}}>Sign Out</h3>
+            </Nav.Link>
+              :
+            <Nav.Link href="/">
+              <h3 style={{fontSize: 20, color: "white", marginLeft: 20}}>Sign In</h3>
+            </Nav.Link>
+          }
+
+        </div>
+        
+        
+
+    </nav>
+
+  //     <Navbar bg="light" expand="lg">
+  //       <Container>
+  //         <Navbar.Brand href="/home">AttendeeTracker</Navbar.Brand>
+  //         <Navbar.Toggle aria-controls="basic-navbar-nav" />
+  //         <Navbar.Collapse id="basic-navbar-nav">
+  //           <Nav className="me-auto">
+  //             <Nav.Link href="/home">Home</Nav.Link>
+  //             <Nav.Link href="/create">Add Event</Nav.Link>
+  //             <Nav.Link href="/" onClick={signOut}>
+  //               Sign Out
+  //             </Nav.Link>
+  //           </Nav>
+  //         </Navbar.Collapse>
+  //       </Container>
+  //     </Navbar>
+  //   );
+  // else
+  //   return (
+  //     <Navbar bg="light" expand="lg">
+  //       <Container>
+  //         <Navbar.Brand href="/">AttendeeTracker</Navbar.Brand>
+  //         <Navbar.Toggle aria-controls="basic-navbar-nav" />
+  //         <Navbar.Collapse id="basic-navbar-nav">
+  //           <Nav className="me-auto">
+  //             <Nav.Link href="/">Home</Nav.Link>
+  //             <Nav.Link href="/">Add Event</Nav.Link>
+  //           </Nav>
+  //         </Navbar.Collapse>
+  //       </Container>
+  //     </Navbar>
+  );
 };
 
 export default NavBar;
