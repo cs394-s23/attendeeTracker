@@ -3,7 +3,7 @@ import { pushDb, useDbData, pushUsertoDb } from "../utilities/firebase";
 
 var YOUR_CLIENT_ID =
     "830241005429-o7l0fqrcdqp9ef44qc8upa6j3510vbvr.apps.googleusercontent.com";
-var YOUR_REDIRECT_URI = "localhost:5173";
+var YOUR_REDIRECT_URI = "http://localhost:5173";
 var fragmentString = location.hash.substring(1);
 
 
@@ -266,31 +266,33 @@ export function oauth2SignIn() {
 
 export const saveToken = () => {
 
-    var params = JSON.parse(localStorage.getItem("oauth2-test-params"));
-    if (params && params["access_token"]) {
-        return true
-    }
+    return new Promise(function (resolve, reject) {
+        console.log('how many times called')
+        var params = JSON.parse(localStorage.getItem("oauth2-test-params"));
+        if (params && params["access_token"]) {
+            resolve(true)
+        }
 
-    var params = {};
-    var regex = /([^&=]+)=([^&]*)/g,
-        m;
-    while ((m = regex.exec(fragmentString))) {
-        params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
-    }
-    if (Object.keys(params).length > 0) {
-        console.log(params)
-        getUserInfo(params).then( (id) => {
-            params['user_id'] = id
-            console.log(id)
-            localStorage.setItem("oauth2-test-params", JSON.stringify(params));
-            return true
-        })
-        // if (params["state"] && params["state"] == "try_sample_request") {
-        //     return true
-        // }
-    }
-    console.log(' no params ');
-    return false;
+        var params = {};
+        var regex = /([^&=]+)=([^&]*)/g,
+            m;
+        while ((m = regex.exec(fragmentString))) {
+            params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+        }
+        if (Object.keys(params).length > 0) {
+            getUserInfo(params).then( (id) => {
+                params['user_id'] = id
+                console.log(id)
+                localStorage.setItem("oauth2-test-params", JSON.stringify(params));
+                resolve(true)
+            })
+            // if (params["state"] && params["state"] == "try_sample_request") {
+            //     return true
+            // }
+        }
+        // console.log(' no params ');
+        // resolve(false);
+    });
 }
 
 const signOut = () => {

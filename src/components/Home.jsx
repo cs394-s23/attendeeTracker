@@ -3,6 +3,7 @@ import Event from "./Event";
 import "../styles/Home.css";
 import { useNavigate } from "react-router-dom";
 import { Reminder } from "./Reminder";
+import React, { useState, useEffect } from "react";
 
 import {
   saveToken,
@@ -12,17 +13,19 @@ import {
 import Button from "react-bootstrap/Button";
 
 const Home = ({ data }) => {
+  const [hasParams, setHasParams] = useState(
+    localStorage.getItem("oauth2-test-params")
+  );
+
   let navigate = useNavigate();
   const routeChange = () => {
     let path = "/create";
     navigate(path);
   };
-  console.log(data)
-  
+  console.log("here");
+  console.log(data);
 
-  var isParamsThere = localStorage.getItem("oauth2-test-params")
-  // console.log(isUserThere)
-  if (!data || !isParamsThere) {
+  if (!data || !hasParams) {
     return (
       <div>
         <NavBar />
@@ -39,9 +42,7 @@ const Home = ({ data }) => {
   //     </div>
   //   );
   // }
-  var user = JSON.parse(localStorage.getItem("oauth2-test-params"))['user_id'];
-
-  
+  var user = JSON.parse(localStorage.getItem("oauth2-test-params"))["user_id"];
 
   // console.log(data.Events);
   var newData = Object.values(data[user]);

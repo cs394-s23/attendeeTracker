@@ -4,7 +4,6 @@ import "../styles/Home.css";
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 
-
 import {
   saveToken,
   oauth2SignIn,
@@ -27,16 +26,17 @@ const SignIn = ({}) => {
     e.preventDefault();
     oauth2SignIn();
     localStorage.setItem("signedIn", true);
-    console.log("hi");
   };
 
   const onClickSigned = (e) => {
-    saveToken();
-    routeChange();
+    saveToken().then((signIn) => {
+      console.log(signIn);
+      routeChange();
+    });
   };
 
   console.log(signedIn);
-  console.log("not logged in save token");
+  //   console.log("not logged in save token");
   if (!signedIn || signedIn == false) {
     return (
       <div>

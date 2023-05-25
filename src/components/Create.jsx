@@ -41,7 +41,7 @@ const Create = (data) => {
       console.log("in database is null");
       trySampleRequest(form, true, null, false);
     } else trySampleRequest(form, true, null, true);
-    // routeChange();
+    routeChange();
   };
 
   // if (saveToken() == true) {
