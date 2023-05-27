@@ -11,6 +11,9 @@ const countAnswers = (e, questionId) => {
     var going = 0;
     var not_going = 0;
     var maybe = 0;
+    var goingList = ""
+    var not_goingList ="";
+    var maybeList = "";
     // console.log(e);
     if (e.responses) {
         console.log(e.responses)
@@ -22,20 +25,35 @@ const countAnswers = (e, questionId) => {
 
             var ind_response =
                 e.responses[i].answers[questionId].textAnswers.answers[0].value;
-            if (ind_response == "Yes") going = going + 1;
-            else if (ind_response == "No") not_going = not_going + 1;
-            else maybe = maybe + 1;
+            if (ind_response == "Yes") {
+                going = going + 1;
+                goingList = goingList  + e.responses[i].respondentEmail + ",";
+            }
+            else if (ind_response == "No") {
+                not_going = not_going + 1;
+                not_goingList = not_goingList + e.responses[i].respondentEmail + ",";
+            }
+            else {
+                maybe = maybe + 1;
+                maybeList = maybeList + e.responses[i].respondentEmail  + ",";
+            }
         }
 
         var result = {};
         result["attending"] = going;
         result["no_response"] = maybe;
         result["not_attending"] = not_going;
+        result["attendingList"] = goingList.substring(0, goingList.length - 1);
+        result["not_attendingList"] = not_goingList.substring(0, not_goingList.length - 1);
+        result["no_responseList"] = maybeList.substring(0, maybeList.length - 1);
     } else {
         var result = {};
         result["attending"] = 0;
         result["no_response"] = 0;
         result["not_attending"] = 0;
+        result["attendingList"] = "";
+        result["not_attendingList"] = "";
+        result["no_responseList"] = "";
     }
     
     return result;

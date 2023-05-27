@@ -1,6 +1,7 @@
 import "../styles/dashAttendanceCard.css";
 import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import AttendanceModal from "./Modal";
 import {
   faCircleCheck,
   faCircleXmark,
@@ -16,33 +17,14 @@ const DashReminderCard = ({ data }) => {
         <div className="attendance">
           <div className="attendance-section">
             <p className="attendance-status">Confirmed Yes</p>
-            <FontAwesomeIcon
-              icon={faCircleCheck}
-              className="attendance-icon fa-4x"
-              style={{ color: "green" }}
-            />
+            <AttendanceModal type="going" data={data.reminder_count} />
             <p className="attendance-number">{data.reminder_count.attending}</p>
           </div>
           <div className="attendance-section">
             <p className="attendance-status">Confirmed No</p>
-            <FontAwesomeIcon
-              icon={faCircleXmark}
-              className="attendance-icon fa-4x"
-              style={{ color: "#FF5733" }}
-            />
+            <AttendanceModal type="not going" data={data.reminder_count} />
             <p className="attendance-number">
               {data.reminder_count.not_attending}
-            </p>
-          </div>
-          <div className="attendance-section">
-            <p className="attendance-status">No Response</p>
-            <FontAwesomeIcon
-              icon={faCircleQuestion}
-              className="attendance-icon fa-4x"
-              style={{ color: "#FFB733" }}
-            />
-            <p className="attendance-number">
-              {data.reminder_count.no_response}
             </p>
           </div>
         </div>
