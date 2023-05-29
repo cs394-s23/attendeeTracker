@@ -14,6 +14,7 @@ const countAnswers = (e, questionId) => {
     var goingList = ""
     var not_goingList ="";
     var maybeList = "";
+    var totalList = "";
     // console.log(e);
     if (e.responses) {
         console.log(e.responses)
@@ -37,25 +38,29 @@ const countAnswers = (e, questionId) => {
                 maybe = maybe + 1;
                 maybeList = maybeList + e.responses[i].respondentEmail  + ",";
             }
+            totalList = totalList + e.responses[i].respondentEmail + ",";
         }
 
         var result = {};
         result["attending"] = going;
         result["no_response"] = maybe;
         result["not_attending"] = not_going;
-        result["attendingList"] = goingList.substring(0, goingList.length - 1);
-        result["not_attendingList"] = not_goingList.substring(0, not_goingList.length - 1);
-        result["no_responseList"] = maybeList.substring(0, maybeList.length - 1);
+        if(goingList.length > 0) result["attendingList"] = goingList.substring(0, goingList.length - 1);
+        if(not_goingList.length > 0) result["not_attendingList"] = not_goingList.substring(0, not_goingList.length - 1);
+        if(maybeList.length > 0) result["no_responseList"] = maybeList.substring(0, maybeList.length - 1);
+        result['totalList'] = totalList.substring(0, totalList.length - 1)
     } else {
         var result = {};
         result["attending"] = 0;
         result["no_response"] = 0;
         result["not_attending"] = 0;
-        result["attendingList"] = "";
-        result["not_attendingList"] = "";
-        result["no_responseList"] = "";
+        // result["attendingList"] = "";
+        // result["not_attendingList"] = "";
+        // result["no_responseList"] = "";
+        result['totalList'] = "";
     }
     
+ 
     return result;
 };
 

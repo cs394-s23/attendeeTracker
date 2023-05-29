@@ -30,7 +30,12 @@ const Create = (data) => {
     const formData = new FormData(e.target),
       formDataObj = Object.fromEntries(formData.entries());
 
-    var form = formDataObj.form;
+    var formArray = formDataObj.form.split("/");
+    var index = 0;
+    while (formArray[index] != "d") index++;
+    var form = formArray[index + 1];
+    console.log(form);
+
     var user = JSON.parse(localStorage.getItem("oauth2-test-params"))[
       "user_id"
     ];

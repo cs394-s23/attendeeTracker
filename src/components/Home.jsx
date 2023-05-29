@@ -17,12 +17,6 @@ const Home = ({ data }) => {
     localStorage.getItem("oauth2-test-params")
   );
 
-  let navigate = useNavigate();
-  const routeChange = () => {
-    let path = "/create";
-    navigate(path);
-  };
-  console.log("here");
   console.log(data);
 
   if (!data || !hasParams) {
@@ -57,17 +51,13 @@ const Home = ({ data }) => {
           .filter(
             (post) =>
               !(
-                (
-                  parseInt(post.time[0]) - 1 < new Date().getMonth() ||
-                  parseInt(post.time.substring(2, 4)) - 1 <
-                    new Date().getDate() ||
-                  parseInt(post.time.substring(5, 7)) + 2000 <
-                    new Date().getFullYear()
-                )
-                //   &&
-                //   parseInt(post.time.substring(8, 10)) - 1 <
-                //     new Date().getHours()) ||
-                // parseInt(post.time.substring(11)) - 1 < new Date().getMinutes()
+                (parseInt(post.time[0]) - 1 <= new Date().getMonth() &&
+                  parseInt(post.time.substring(2, 4)) - 1 <=
+                    new Date().getDate() &&
+                  parseInt(post.time.substring(5, 7)) + 2000 ==
+                    new Date().getFullYear()) ||
+                parseInt(post.time.substring(5, 7)) + 2000 <
+                  new Date().getFullYear()
               )
           )
           .map((event, index) => (
@@ -79,14 +69,13 @@ const Home = ({ data }) => {
         {newData
           .filter(
             (post) =>
-              parseInt(post.time[0]) - 1 < new Date().getMonth() ||
-              parseInt(post.time.substring(2, 4)) - 1 < new Date().getDate() ||
+              (parseInt(post.time[0]) - 1 <= new Date().getMonth() &&
+                parseInt(post.time.substring(2, 4)) - 1 <=
+                  new Date().getDate() &&
+                parseInt(post.time.substring(5, 7)) + 2000 ==
+                  new Date().getFullYear()) ||
               parseInt(post.time.substring(5, 7)) + 2000 <
                 new Date().getFullYear()
-            //   &&
-            //   parseInt(post.time.substring(8, 10)) - 1 <
-            //     new Date().getHours()) ||
-            // parseInt(post.time.substring(11)) - 1 < new Date().getMinutes()
           )
           .map((event, index) => (
             <Event data={event} key={index} />
