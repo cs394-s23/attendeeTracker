@@ -83,11 +83,11 @@ const AttendanceModal = (props) => {
         />
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>No Response List</Modal.Title>
+            <Modal.Title>Maybe List</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <ul>
-              {props.data.no_responseList?.split(",").map((person, index) => (
+              {props.data.maybeList?.split(",").map((person, index) => (
                 <li key={index}>{person.trim()}</li>
               ))}
             </ul>

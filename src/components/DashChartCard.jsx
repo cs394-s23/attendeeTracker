@@ -22,10 +22,10 @@ const DashChartCard = ({ data }) => {
                 series={[
                   data.count.attending,
                   data.count.not_attending,
-                  data.count.no_response,
+                  data.count.maybe,
                 ]}
                 options={{
-                  labels: ["Attending", "Not Attending", "No Response"],
+                  labels: ["Attending", "Not Attending", "Maybe"],
                 }}
               ></Chart>
             </div>

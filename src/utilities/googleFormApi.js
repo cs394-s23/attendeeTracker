@@ -43,16 +43,16 @@ const countAnswers = (e, questionId) => {
 
         var result = {};
         result["attending"] = going;
-        result["no_response"] = maybe;
+        result["maybe"] = maybe;
         result["not_attending"] = not_going;
         if(goingList.length > 0) result["attendingList"] = goingList.substring(0, goingList.length - 1);
         if(not_goingList.length > 0) result["not_attendingList"] = not_goingList.substring(0, not_goingList.length - 1);
-        if(maybeList.length > 0) result["no_responseList"] = maybeList.substring(0, maybeList.length - 1);
+        if(maybeList.length > 0) result["maybeList"] = maybeList.substring(0, maybeList.length - 1);
         result['totalList'] = totalList.substring(0, totalList.length - 1)
     } else {
         var result = {};
         result["attending"] = 0;
-        result["no_response"] = 0;
+        result["maybe"] = 0;
         result["not_attending"] = 0;
         // result["attendingList"] = "";
         // result["not_attendingList"] = "";
@@ -75,6 +75,7 @@ const parseResponse = (e, v, isUserPresent, eventId) => {
     data["host"] = e.items[1].description;
     data["time"] = e.items[0].description;
     data["formId"] = e.formId;
+    data["responderUri"] = e.responderUri
 
     console.log(data["details"]);
     var questionId = e.items[2].questionItem.question.questionId;
@@ -119,66 +120,71 @@ const parseResponse = (e, v, isUserPresent, eventId) => {
 
 export const addReminder = (form) => {
     // e.preventDefault();
-    var params = JSON.parse(localStorage.getItem("oauth2-test-params"));
-    var body = {
-        requests: [
-            {
-                createItem: {
-                    item: {
-                        title: "Are you still going?",
-                        questionItem: {
-                            question: {
-                                required: true,
-                                choiceQuestion: {
-                                    type: "RADIO",
-                                    options: [
-                                        {
-                                            value: "Yes",
-                                        },
-                                        {
-                                            value: "No",
-                                        },
-                                    ],
+    return new Promise(function (resolve, reject) {
+        var params = JSON.parse(localStorage.getItem("oauth2-test-params"));
+        var body = {
+            requests: [
+                {
+                    createItem: {
+                        item: {
+                            title: "Are you still going?",
+                            questionItem: {
+                                question: {
+                                    required: true,
+                                    choiceQuestion: {
+                                        type: "RADIO",
+                                        options: [
+                                            {
+                                                value: "Yes",
+                                            },
+                                            {
+                                                value: "No",
+                                            },
+                                        ],
+                                    },
                                 },
                             },
                         },
-                    },
-                    location: {
-                        index: 3,
+                        location: {
+                            index: 3,
+                        },
                     },
                 },
-            },
-        ],
-    };
-    // body = JSON.stringify(body)
-    if (params && params["access_token"]) {
-        var xhr = new XMLHttpRequest();
-
-        console.log(params);
-        console.log(body);
-        xhr.open(
-            "POST",
-            "https://forms.googleapis.com/v1/forms/" +
-            form +
-            ":batchUpdate?" +
-            "access_token=" +
-            params["access_token"]
-        );
-        xhr.onreadystatechange = function (i) {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                console.log("api hit");
-            } else if (xhr.readyState === 4 && xhr.status === 403) {
-                // Token invalid, so prompt for user permission.
-                // oauth2SignIn();
-            } else if (xhr.readyState === 4 && xhr.status === 401) {
-                // Token invalid, so prompt for user permission.
-                oauth2SignIn();
-            }
+            ],
         };
-        xhr.send(JSON.stringify(body));
-    } else {
-        oauth2SignIn();
-    }
+        // body = JSON.stringify(body)
+        if (params && params["access_token"]) {
+            var xhr = new XMLHttpRequest();
+
+            console.log(params);
+            console.log(body);
+            xhr.open(
+                "POST",
+                "https://forms.googleapis.com/v1/forms/" +
+                form +
+                ":batchUpdate?" +
+                "access_token=" +
+                params["access_token"]
+            );
+            xhr.onreadystatechange = function (i) {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    resolve(true)
+                    console.log("api hit");
+                } else if (xhr.readyState === 4 && xhr.status === 403) {
+                    // Token invalid, so prompt for user permission.
+                    // oauth2SignIn();
+                    resolve(false)
+                } else if (xhr.readyState === 4 && xhr.status === 401) {
+                    // Token invalid, so prompt for user permission.
+                    resolve(false)
+                    // oauth2SignIn();
+                }
+            };
+            xhr.send(JSON.stringify(body));
+        } else {
+            oauth2SignIn();
+        }
+});
 };
 
 export const getUserInfo = (params) => {

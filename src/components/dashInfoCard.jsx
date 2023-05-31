@@ -3,13 +3,21 @@ import Card from "react-bootstrap/Card";
 import { addReminder } from "../utilities/googleFormApi";
 import { trySampleRequest } from "../utilities/googleFormApi";
 import Button from "react-bootstrap/Button";
+import { sendEmail } from "./Reminder";
 const DashInfoCard = ({ data }) => {
   const sendReminder = (e) => {
     e.preventDefault();
     //first check if question is already sent
-    if (!data.hasOwnProperty("reminder_count")) addReminder(data.formId);
-    window.location.reload(false);
-    refreshData();
+    if (!data.hasOwnProperty("reminder_count")) {
+      addReminder(data.formId).then((result) => {
+        refreshData();
+      });
+    } else {
+      refreshData();
+    }
+    // window.location.reload(false);
+
+    sendEmail(data.responderUri, data.count.totalList, data.name);
   };
 
   const refreshData = (e) => {

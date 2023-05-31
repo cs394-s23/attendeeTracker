@@ -21,8 +21,8 @@ const Event = (data, key) => {
         <h3>{data.name}</h3>
         <p>{data.details}</p>
         <p>
-          {data.count.attending} attending, {data.count.no_response} no
-          response, {data.count.not_attending} not attending
+          {data.count.attending} attending, {data.count.maybe} maybe,{" "}
+          {data.count.not_attending} not attending
         </p>
       </Card.Body>
     </Card>

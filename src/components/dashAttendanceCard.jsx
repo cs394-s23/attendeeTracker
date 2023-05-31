@@ -24,9 +24,9 @@ const DashAttendanceCard = ({ data }) => {
             <p className="attendance-number">{data.count.not_attending}</p>
           </div>
           <div className="attendance-section">
-            <p className="attendance-status">No Response</p>
+            <p className="attendance-status">Maybe</p>
             <AttendanceModal type="maybe" data={data.count} />
-            <p className="attendance-number">{data.count.no_response}</p>
+            <p className="attendance-number">{data.count.maybe}</p>
           </div>
         </div>
       </Card.Body>

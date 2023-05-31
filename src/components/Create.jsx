@@ -56,8 +56,8 @@ const Create = (data) => {
       <NavBar />
       <Form id="form" onSubmit={test}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Forms ID</Form.Label>
-          <Form.Control name="form" placeholder="Enter Forms ID" />
+          <Form.Label>Form URL</Form.Label>
+          <Form.Control name="form" placeholder="Enter Form Editor URL" />
         </Form.Group>
 
         <Button variant="primary" type="submit">
