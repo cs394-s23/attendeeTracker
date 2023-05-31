@@ -14,8 +14,6 @@ import Button from "react-bootstrap/Button";
 const SignIn = ({}) => {
   const [signedIn, setSignedIn] = useState(localStorage.getItem("signedIn"));
 
-  //   console.log(signedIn);
-  //   setSignedIn(localStorage.getItem("signedIn"));
   let navigate = useNavigate();
   const routeChange = () => {
     let path = "/home";

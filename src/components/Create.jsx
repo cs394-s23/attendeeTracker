@@ -49,8 +49,6 @@ const Create = (data) => {
     routeChange();
   };
 
-  // if (saveToken() == true) {
-  //   console.log("logged in");
   return (
     <div>
       <NavBar />
@@ -66,9 +64,6 @@ const Create = (data) => {
       </Form>
     </div>
   );
-  // } else {
-  //   oauth2SignIn();
-  // }
 };
 
 export default Create;

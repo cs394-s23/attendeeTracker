@@ -8,7 +8,9 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import React, { useState, useEffect } from "react";
 
 const NavBar = () => {
-  const [signedIn, setSignedIn] = useState(localStorage.getItem("signedIn"));
+  const [signedIn, setSignedIn] = useState(
+    localStorage.getItem("oauth2-test-params")
+  );
 
   const signOut = (e) => {
     localStorage.removeItem("signedIn");
@@ -104,24 +106,24 @@ const NavBar = () => {
         </Nav.Link>
 
         <div style={{ marginLeft: 50, marginTop: 7, display: "flex" }}>
-          <Nav.Link href="/">
+          <Nav.Link href="">
             <h3 style={{ fontSize: 20, color: "white", marginRight: 20 }}>
               Home
             </h3>
           </Nav.Link>
 
-          <Nav.Link href="/">
+          <Nav.Link href="">
             <h3 style={{ fontSize: 20, color: "white" }}>Add Event</h3>
           </Nav.Link>
 
           {signedIn ? (
-            <Nav.Link href="/" onClick={signOut}>
+            <Nav.Link href="" onClick={signOut}>
               <h3 style={{ fontSize: 20, color: "white", marginLeft: 20 }}>
                 Sign Out
               </h3>
             </Nav.Link>
           ) : (
-            <Nav.Link href="/">
+            <Nav.Link href="">
               <h3 style={{ fontSize: 20, color: "white", marginLeft: 20 }}>
                 Sign In
               </h3>

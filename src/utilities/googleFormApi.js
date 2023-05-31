@@ -15,7 +15,6 @@ const countAnswers = (e, questionId) => {
     var not_goingList ="";
     var maybeList = "";
     var totalList = "";
-    // console.log(e);
     if (e.responses) {
         console.log(e.responses)
         for (var i = 0; i < e.responses.length; i++) {
@@ -54,9 +53,6 @@ const countAnswers = (e, questionId) => {
         result["attending"] = 0;
         result["maybe"] = 0;
         result["not_attending"] = 0;
-        // result["attendingList"] = "";
-        // result["not_attendingList"] = "";
-        // result["no_responseList"] = "";
         result['totalList'] = "";
     }
     
@@ -65,8 +61,6 @@ const countAnswers = (e, questionId) => {
 };
 
 const parseResponse = (e, v, isUserPresent, eventId) => {
-    // console.log(e);
-    // console.log(v);
     var e = JSON.parse(e);
     var v = JSON.parse(v);
     var data = {};
@@ -97,10 +91,8 @@ const parseResponse = (e, v, isUserPresent, eventId) => {
     data["count"] = going;
     console.log(questionId);
     console.log(data);
-    // console.log()
     var user = JSON.parse(localStorage.getItem("oauth2-test-params"))['user_id'];
 
-    // console.log('user is ' + user)
     if(!isUserPresent) {
         console.log('user not present, adding to firebase')
         pushUsertoDb(user, "/" + user)
@@ -119,7 +111,6 @@ const parseResponse = (e, v, isUserPresent, eventId) => {
 
 
 export const addReminder = (form) => {
-    // e.preventDefault();
     return new Promise(function (resolve, reject) {
         var params = JSON.parse(localStorage.getItem("oauth2-test-params"));
         var body = {
@@ -274,13 +265,6 @@ export const trySampleRequest = (form, responsesOrForm, formDetails = null, isUs
 export function oauth2SignIn() {
     return new Promise(function (resolve, reject) { 
         // Google's OAuth 2.0 endpoint for requesting an access token
-        // var url = "https://accounts.google.com/o/oauth2/v2/auth?" +
-        // "scope=https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/userinfo.profile&" + 
-        // "include_granted_scopes=true&" +
-        // "response_type=token&+"
-        // "state=state_parameter_passthrough_value&"+
-        // "redirect_uri=" + YOUR_REDIRECT_URI + "&"+
-        // "client_id=" + YOUR_CLIENT_ID
 
         var oauth2Endpoint = "https://accounts.google.com/o/oauth2/v2/auth";
 
@@ -338,12 +322,8 @@ export const saveToken = () => {
                 localStorage.setItem("oauth2-test-params", JSON.stringify(params));
                 resolve(true)
             })
-            // if (params["state"] && params["state"] == "try_sample_request") {
-            //     return true
-            // }
         }
-        // console.log(' no params ');
-        // resolve(false);
+
     });
 }
 
