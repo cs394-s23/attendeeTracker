@@ -32,7 +32,20 @@ const Create = (data) => {
 
     var formArray = formDataObj.form.split("/");
     var index = 0;
-    while (formArray[index] != "d") index++;
+    console.log("here");
+    while (index < formArray.length && formArray[index] != "d") {
+      console.log(index);
+      index++;
+      // if (index > formArray.length + 1) {
+      //   alert("Please enter valid URL");
+      //   return;
+      // }
+    }
+
+    if (index >= formArray.length) {
+      alert("Please enter valid URL");
+      return;
+    }
     var form = formArray[index + 1];
     console.log(form);
 
