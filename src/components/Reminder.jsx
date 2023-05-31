@@ -28,14 +28,18 @@ export const sendEmail = (formURL, bccList, name) => {
     to_email: "attendeetracker.testing",
     bcc_list: bccList,
   };
-  emailjs.send(serviceID, templateID, templateParams, publicKey).then(
-    (result) => {
-      console.log(result.text);
-    },
-    (error) => {
-      console.log(error.text);
-    }
-  );
+  return new Promise(function (resolve, reject) {
+    emailjs.send(serviceID, templateID, templateParams, publicKey).then(
+      (result) => {
+        console.log(result.text);
+        resolve(true);
+      },
+      (error) => {
+        console.log(error.text);
+        resolve(false);
+      }
+    );
+  });
 };
 
 export const Reminder = () => {

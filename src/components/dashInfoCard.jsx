@@ -15,9 +15,10 @@ const DashInfoCard = ({ data }) => {
     } else {
       refreshData();
     }
-    window.location.reload(false);
 
-    sendEmail(data.responderUri, data.count.totalList, data.name);
+    sendEmail(data.responderUri, data.count.totalList, data.name).then(() => {
+      window.location.reload(false);
+    });
   };
 
   const refreshData = (e) => {
