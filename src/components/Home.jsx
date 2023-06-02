@@ -17,7 +17,7 @@ const Home = ({ data }) => {
     localStorage.getItem("oauth2-test-params")
   );
 
-  console.log(data);
+  // console.log(data);
 
   if (!data || !hasParams) {
     return (
@@ -51,9 +51,12 @@ const Home = ({ data }) => {
           .filter(
             (post) =>
               !(
-                (parseInt(post.time[0]) - 1 <= new Date().getMonth() &&
-                  parseInt(post.time.substring(2, 4)) - 1 <=
-                    new Date().getDate() &&
+                (parseInt(post.time.substring(2, 4)) - 1 <=
+                  new Date().getDate() &&
+                  parseInt(post.time[0]) - 1 <= new Date().getMonth() &&
+                  parseInt(post.time.substring(5, 7)) + 2000 ==
+                    new Date().getFullYear()) ||
+                (parseInt(post.time[0]) - 1 < new Date().getMonth() &&
                   parseInt(post.time.substring(5, 7)) + 2000 ==
                     new Date().getFullYear()) ||
                 parseInt(post.time.substring(5, 7)) + 2000 <
@@ -69,9 +72,12 @@ const Home = ({ data }) => {
         {newData
           .filter(
             (post) =>
-              (parseInt(post.time[0]) - 1 <= new Date().getMonth() &&
-                parseInt(post.time.substring(2, 4)) - 1 <=
-                  new Date().getDate() &&
+              (parseInt(post.time.substring(2, 4)) - 1 <=
+                new Date().getDate() &&
+                parseInt(post.time[0]) - 1 <= new Date().getMonth() &&
+                parseInt(post.time.substring(5, 7)) + 2000 ==
+                  new Date().getFullYear()) ||
+              (parseInt(post.time[0]) - 1 < new Date().getMonth() &&
                 parseInt(post.time.substring(5, 7)) + 2000 ==
                   new Date().getFullYear()) ||
               parseInt(post.time.substring(5, 7)) + 2000 <
