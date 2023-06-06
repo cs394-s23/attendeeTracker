@@ -3,6 +3,7 @@ import Event from "./Event";
 import "../styles/Home.css";
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import { notSignedIn } from "../utilities/googleFormApi";
 
 import {
   saveToken,
@@ -21,9 +22,11 @@ const SignIn = ({}) => {
   };
 
   const onClickNotSigned = (e) => {
-    e.preventDefault();
-    oauth2SignIn();
     localStorage.setItem("signedIn", true);
+    // console.log("hi");
+    window.location.reload(true);
+    // e.preventDefault();
+    oauth2SignIn();
   };
 
   const onClickSigned = (e) => {
@@ -33,9 +36,10 @@ const SignIn = ({}) => {
     });
   };
 
-  console.log(signedIn);
+  console.log("hi " + localStorage.getItem("signedIn"));
+
   //   console.log("not logged in save token");
-  if (!signedIn || signedIn == false) {
+  if (notSignedIn()) {
     return (
       <div>
         <NavBar />

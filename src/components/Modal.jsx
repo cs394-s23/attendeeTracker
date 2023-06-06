@@ -21,6 +21,7 @@ const AttendanceModal = (props) => {
           icon={faCircleCheck}
           className="attendance-icon fa-4x"
           style={{ color: "green" }}
+          title="checkIcon"
           onClick={handleShow}
         />
 
@@ -50,6 +51,7 @@ const AttendanceModal = (props) => {
           icon={faCircleXmark}
           className="attendance-icon fa-4x"
           style={{ color: "#FF5733" }}
+          title="xIcon"
           onClick={handleShow}
         />
 
@@ -79,6 +81,7 @@ const AttendanceModal = (props) => {
           icon={faCircleQuestion}
           className="attendance-icon fa-4x"
           style={{ color: "#FFB733" }}
+          title="maybeIcon"
           onClick={handleShow}
         />
         <Modal show={show} onHide={handleClose}>

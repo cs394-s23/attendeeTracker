@@ -4,29 +4,30 @@ import Create from "./components/Create";
 import { Link, BrowserRouter, Route, Routes } from "react-router-dom";
 import { saveToken } from "./utilities/googleFormApi";
 import { it, vi } from "vitest";
+import SignIn from "./components/SignIn";
 // import { jest } from "@jest/globals";
+import { notSignedIn } from "./utilities/googleFormApi";
 
 describe("create page tests", () => {
-  test("can't post new event when not signed in", () => {
+  test("can't goto home page when not signed in", () => {
     render(
       <BrowserRouter>
-        <Create />
+        <SignIn />
       </BrowserRouter>
     );
-    expect(screen.queryByText("Forms ID")).toBeNull();
+    expect(screen.queryAllByText("Sign In")).toBeDefined();
   });
 
   vi.mock("./utilities/googleFormApi");
 
-  it("post new event when signed in", () => {
-    saveToken.mockReturnValue(true);
-
+  test("able to continue to home page when signed in", () => {
+    notSignedIn.mockReturnValue(false);
+    console.log(notSignedIn());
     render(
       <BrowserRouter>
-        <Create />
+        <SignIn />
       </BrowserRouter>
     );
-    expect();
-    expect(screen.getByText("Forms ID")).toBeDefined();
+    expect(screen.getByText("Continue")).toBeDefined();
   });
 });
