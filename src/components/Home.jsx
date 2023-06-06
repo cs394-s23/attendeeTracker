@@ -24,6 +24,7 @@ const Home = ({ data }) => {
       <div>
         <NavBar />
         <h1 id="header"> Events </h1>
+        <h1 id="header"> Past Events </h1>
       </div>
     );
   }
