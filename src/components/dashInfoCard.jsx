@@ -17,7 +17,7 @@ const DashInfoCard = ({ data }) => {
     }
 
     sendEmail(data.responderUri, data.count.totalList, data.name).then(() => {
-      // window.location.reload(false);
+      window.location.reload(false);
     });
   };
 

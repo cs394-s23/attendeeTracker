@@ -4,11 +4,6 @@ import Chart from "react-apexcharts";
 import Card from "react-bootstrap/Card";
 
 const DashChartCard = ({ data }) => {
-  // SEMI HARD CODED FOR THE FIRST EVENT
-  // const {
-  //   params: { personId },
-  // } = match;
-  // data = data.Events[0];
   return (
     <div>
       <Card className="dashChartCard">

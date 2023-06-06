@@ -32,19 +32,6 @@ const storage = getStorage(app);
 export default storage;
 
 export const db = getDatabase(app);
-// const analytics = getAnalytics(app);
-
-// if (!windows.EMULATION && import.meta.env.NODE_ENV !== 'production') {
-//   connectAuthEmulator(auth, "http://127.0.0.1:9099");
-//   connectDatabaseEmulator(database, "127.0.0.1", 9000);
-
-//   // signInWithCredential(auth, GoogleAuthProvider.credential(
-//   //   '{"sub": "qEvli4msW0eDz5mSVO6j3W7i8w1k", "email": "tester@gmail.com", "displayName":"Test User", "email_verified": true}'
-//   // ));
-
-//   // set flag to avoid connecting twice, e.g., because of an editor hot-reload
-//   windows.EMULATION = true;
-// }
 
 export const useDbData = (path) => {
   const [data, setData] = useState();
@@ -71,26 +58,10 @@ const makeResult = (error) => {
   return { timestamp, error, message };
 };
 
-//pushes new data to firebase and returns its key
-
-// var test = {
-//   name: "Alex's Pizza Night 3",
-//   host: "Alex Tang",
-//   guests: 3,
-//   profile_pic_url:
-//     "https://imageio.forbes.com/specials-images/imageserve/602c09c9135a060af5e1a8f4/Face-with-Spiral-Eyes---a-new-Apple-emoji-/960x0.png?format=png&width=960",
-//   place: "828 Noyes",
-//   time: "April 25th",
-// };
-// pushDb(test, "Activities/");
 
 export const pushDb = (data, path) => {
   const newPostKey = uuid().slice(0, 8)
-  // const updates = {};
-  data.key = newPostKey;
-  // var lastIndex = 1;
-  // updates['/' + path + lastIndex] = data;
-  // return update(ref(db), updates);
+  data.key = newPostKey;;
 
   var key = set(ref(db, path + newPostKey), data);
 };
@@ -100,9 +71,6 @@ export const setDb = (data, path) => {
 }
 
 export const pushUsertoDb = (email, path) => {
-  // var lastIndex = 1;
-  // updates['/' + path + lastIndex] = data;
-  // return update(ref(db), updates);
 
   var key = set(ref(db, path), email);
 };

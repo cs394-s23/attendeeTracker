@@ -2,9 +2,6 @@
 import Container from "react-bootstrap/Container";
 
 import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import Button from "react-bootstrap/Button";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import React, { useState, useEffect } from "react";
 
 const NavBar = () => {
@@ -15,7 +12,6 @@ const NavBar = () => {
   const signOut = (e) => {
     localStorage.removeItem("signedIn");
     localStorage.removeItem("oauth2-test-params");
-    // console.log("hi");
   };
 
   if (signedIn)
@@ -44,7 +40,6 @@ const NavBar = () => {
               style={{ width: 200 }}
             />{" "}
             {/* roughly size 58 */}
-            {/* <h1 className="title" style={{ fontFamily: "mont-semibold", fontSize: 30, color: "white", marginTop: 10, marginLeft: 40}}> Attendee Tracker</h1> */}
           </div>
         </Nav.Link>
 
@@ -101,7 +96,6 @@ const NavBar = () => {
               style={{ width: 200 }}
             />{" "}
             {/* roughly size 58 */}
-            {/* <h1 className="title" style={{ fontFamily: "mont-semibold", fontSize: 30, color: "white", marginTop: 10, marginLeft: 40}}> Attendee Tracker</h1> */}
           </div>
         </Nav.Link>
 

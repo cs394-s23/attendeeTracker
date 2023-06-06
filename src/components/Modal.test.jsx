@@ -15,7 +15,6 @@ describe("eric modal test", () => {
   test("check Icon open list of attendees", () => {
     render(<Modal type="going" data={count} />);
 
-    // console.log(screen.queryByText("hello"));
     const checkIcon = screen.getByTitle("checkIcon");
     expect(screen.getByTitle("checkIcon")).not.toBeNull();
     fireEvent.click(checkIcon);
@@ -30,7 +29,6 @@ describe("eric modal test", () => {
     expect(xIcon).not.toBeNull();
     fireEvent.click(xIcon);
     expect(screen.getByText("Not Attending List")).not.toBeNull();
-    // expect(screen.getByText("test1")).not.toBeNull();
   });
 
   test("maybe Icon opens list of not going", () => {
@@ -41,7 +39,5 @@ describe("eric modal test", () => {
     expect(screen.getByText("Maybe List")).not.toBeNull();
     expect(screen.getByText("test2")).not.toBeNull();
     expect(screen.getByText("test3")).not.toBeNull();
-    // expect(screen.getByText("test1")).not.toBeNull();
   });
 });
-//

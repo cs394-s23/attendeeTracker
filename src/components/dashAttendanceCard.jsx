@@ -1,12 +1,6 @@
 import "../styles/dashAttendanceCard.css";
 import Card from "react-bootstrap/Card";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import AttendanceModal from "./Modal";
-import {
-  faCircleCheck,
-  faCircleXmark,
-  faCircleQuestion,
-} from "@fortawesome/free-solid-svg-icons";
 
 const DashAttendanceCard = ({ data }) => {
   return (

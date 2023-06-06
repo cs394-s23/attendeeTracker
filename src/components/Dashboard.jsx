@@ -9,7 +9,6 @@ import DashReminderCard from "./DashReminderCard";
 
 const Dashboard = ({ data }) => {
   let { eventId } = useParams();
-  //console.log("eventId " + eventId);
   if (!data) {
     return <h1>Data is loading...</h1>;
   }

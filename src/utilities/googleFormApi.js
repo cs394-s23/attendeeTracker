@@ -10,7 +10,6 @@ var fragmentString = location.hash.substring(1);
 
 export const notSignedIn = () => {
     var signedIn = localStorage.getItem("signedIn");
-    // console.log('not signed in returning'  + (!signedIn || signedIn == false))
     return !signedIn || signedIn == false;
   };
 
@@ -23,7 +22,6 @@ const countAnswers = (e, questionId) => {
     var maybeList = "";
     var totalList = "";
     if (e.responses) {
-        // console.log(e.responses)
         for (var i = 0; i < e.responses.length; i++) {
             if(!e.responses[i].answers.hasOwnProperty(questionId)) {
                 maybe++;
@@ -144,7 +142,6 @@ export const addReminder = (form) => {
                 },
             ],
         };
-        // body = JSON.stringify(body)
         if (params && params["access_token"]) {
             var xhr = new XMLHttpRequest();
 
@@ -204,7 +201,6 @@ export const getUserInfo = (params) => {
         });
 
     } else {
-        // console.log('not logged in')
         // oauth2SignIn();
     }
 }
@@ -247,7 +243,6 @@ export const trySampleRequest = (form, responsesOrForm, formDetails = null, isUs
         };
         xhr.send(null);
     } else {
-        // console.log('not logged in')
         // oauth2SignIn();
     }
 };

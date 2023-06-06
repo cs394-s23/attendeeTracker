@@ -2,15 +2,8 @@ import "../styles/dashAttendanceCard.css";
 import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import AttendanceModal from "./Modal";
-import {
-  faCircleCheck,
-  faCircleXmark,
-  faCircleQuestion,
-} from "@fortawesome/free-solid-svg-icons";
 
 const DashReminderCard = ({ data }) => {
-  // SEMI HARD CODED FOR THE FIRST EVENT
-  // data = data.Events[0];
   return (
     <Card className="dashAttendanceCard">
       <Card.Body className="dashAttendanCecard-body">
