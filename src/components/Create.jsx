@@ -1,16 +1,10 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import React, { useState, useEffect } from "react";
-import Dashboard from "./Dashboard.jsx";
 import NavBar from "./NavBar.jsx";
 import { useNavigate } from "react-router-dom";
 import "../styles/Create.css";
-import { pushDb } from "../utilities/firebase";
-import {
-  trySampleRequest,
-  saveToken,
-  oauth2SignIn,
-} from "../utilities/googleFormApi";
+import { trySampleRequest } from "../utilities/googleFormApi";
 const Create = (data) => {
   let navigate = useNavigate();
   const routeChange = () => {
@@ -34,10 +28,6 @@ const Create = (data) => {
     var index = 0;
     while (index < formArray.length && formArray[index] != "d") {
       index++;
-      // if (index > formArray.length + 1) {
-      //   alert("Please enter valid URL");
-      //   return;
-      // }
     }
 
     if (index >= formArray.length) {

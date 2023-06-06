@@ -1,23 +1,13 @@
 import NavBar from "./NavBar";
 import Event from "./Event";
 import "../styles/Home.css";
-import { useNavigate } from "react-router-dom";
-import { Reminder } from "./Reminder";
-import React, { useState, useEffect } from "react";
 
-import {
-  saveToken,
-  oauth2SignIn,
-  getUserInfo,
-} from "../utilities/googleFormApi";
-import Button from "react-bootstrap/Button";
+import React, { useState, useEffect } from "react";
 
 const Home = ({ data }) => {
   const [hasParams, setHasParams] = useState(
     localStorage.getItem("oauth2-test-params")
   );
-
-  // console.log(data);
 
   if (!data || !hasParams) {
     return (
@@ -38,10 +28,9 @@ const Home = ({ data }) => {
       </div>
     );
   }
-  // console.log(data.Events);
+
   var newData = Object.values(data[user]);
 
-  // getUserInfo();
   return (
     <div>
       <NavBar />
