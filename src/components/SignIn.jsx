@@ -23,7 +23,6 @@ const SignIn = ({}) => {
 
   const onClickNotSigned = (e) => {
     localStorage.setItem("signedIn", true);
-    // console.log("hi");
     window.location.reload(true);
     // e.preventDefault();
     oauth2SignIn();
@@ -36,9 +35,6 @@ const SignIn = ({}) => {
     });
   };
 
-  console.log("hi " + localStorage.getItem("signedIn"));
-
-  //   console.log("not logged in save token");
   if (notSignedIn()) {
     return (
       <div>

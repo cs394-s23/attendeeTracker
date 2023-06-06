@@ -22,14 +22,11 @@ const DashInfoCard = ({ data }) => {
   };
 
   const refreshData = (e) => {
-    console.log(data);
     var formId = data.formId;
-    console.log(data.key);
     trySampleRequest(formId, true, null, true, data.key);
   };
 
   var splitDate = data.time.split("-");
-  console.log(splitDate);
   return (
     <Card className="dashInfoCard">
       <Card.Body className="dashInfoCard-body">

@@ -32,9 +32,7 @@ const Create = (data) => {
 
     var formArray = formDataObj.form.split("/");
     var index = 0;
-    console.log("here");
     while (index < formArray.length && formArray[index] != "d") {
-      console.log(index);
       index++;
       // if (index > formArray.length + 1) {
       //   alert("Please enter valid URL");
@@ -47,16 +45,13 @@ const Create = (data) => {
       return;
     }
     var form = formArray[index + 1];
-    console.log(form);
 
     var user = JSON.parse(localStorage.getItem("oauth2-test-params"))[
       "user_id"
     ];
 
     var inDatabase = data.hasOwnProperty(user);
-    console.log(inDatabase);
     if (inDatabase == false) {
-      console.log("in database is null");
       trySampleRequest(form, true, null, false);
     } else trySampleRequest(form, true, null, true);
     routeChange();

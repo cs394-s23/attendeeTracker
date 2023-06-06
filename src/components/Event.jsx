@@ -10,7 +10,6 @@ const Event = (data, key) => {
   const routeChange = () => {
     let path = "/" + data.key;
     var formId = data.formId;
-    console.log(data.key);
     trySampleRequest(formId, true, null, true, data.key);
     navigate(path);
   };

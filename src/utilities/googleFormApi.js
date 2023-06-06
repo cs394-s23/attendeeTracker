@@ -23,7 +23,7 @@ const countAnswers = (e, questionId) => {
     var maybeList = "";
     var totalList = "";
     if (e.responses) {
-        console.log(e.responses)
+        // console.log(e.responses)
         for (var i = 0; i < e.responses.length; i++) {
             if(!e.responses[i].answers.hasOwnProperty(questionId)) {
                 maybe++;
@@ -78,17 +78,14 @@ const parseResponse = (e, v, isUserPresent, eventId) => {
     data["formId"] = e.formId;
     data["responderUri"] = e.responderUri
 
-    console.log(data["details"]);
     var questionId = e.items[2].questionItem.question.questionId;
     var going = countAnswers(v, questionId);
-    console.log(going)
+
 
     var reminder_going = {}
     if(e.items.length > 3) {
-        console.log('in here')
-        console.log(e.items)
+
         var reminderId = e.items[3].questionItem.question.questionId;
-        console.log(reminderId)
         reminder_going = countAnswers(v, reminderId)
     }
 
@@ -96,16 +93,13 @@ const parseResponse = (e, v, isUserPresent, eventId) => {
 
 
     data["count"] = going;
-    console.log(questionId);
-    console.log(data);
     var user = JSON.parse(localStorage.getItem("oauth2-test-params"))['user_id'];
 
     if(!isUserPresent) {
         console.log('user not present, adding to firebase')
         pushUsertoDb(user, "/" + user)
     }
-    console.log('event id here')
-    console.log(eventId)
+
 
     if(eventId != null) {
         data["key"] = eventId
@@ -154,8 +148,6 @@ export const addReminder = (form) => {
         if (params && params["access_token"]) {
             var xhr = new XMLHttpRequest();
 
-            console.log(params);
-            console.log(body);
             xhr.open(
                 "POST",
                 "https://forms.googleapis.com/v1/forms/" +
@@ -187,11 +179,9 @@ export const addReminder = (form) => {
 
 export const getUserInfo = (params) => {
     if (params && params["access_token"]) {
-        console.log('in user info')
         return new Promise(function (resolve, reject) {
 
             var xhr = new XMLHttpRequest();
-            console.log(params);
             xhr.open(
                 "GET",
                 "https://www.googleapis.com/oauth2/v1/userinfo?" +
@@ -222,13 +212,11 @@ export const getUserInfo = (params) => {
 export const trySampleRequest = (form, responsesOrForm, formDetails = null, isUserPresent = false, eventId = null) => {
     var params = JSON.parse(localStorage.getItem("oauth2-test-params"));
     if (params && params["access_token"]) {
-        console.log(params)
         var xhr = new XMLHttpRequest();
         var responses = "?";
         if (responsesOrForm == false) {
             responses = "/responses?";
         }
-        console.log(params);
         xhr.open(
             "GET",
             "https://forms.googleapis.com/v1/forms/" +
@@ -241,14 +229,12 @@ export const trySampleRequest = (form, responsesOrForm, formDetails = null, isUs
             if (xhr.readyState === 4 && xhr.status === 200) {
                 console.log("api hit");
                 if (responsesOrForm == false) {
-                    console.log(xhr.response);
-                    console.log('event id' + eventId)
+
                     parseResponse(formDetails, xhr.response, isUserPresent, eventId);
                 }
                 //   parseResponse(xhr.response);
                 if (responsesOrForm == true) {
-                    console.log(xhr.response);
-                    console.log('event id' + eventId)
+
                     trySampleRequest(form, false, xhr.response, isUserPresent, eventId);
                 }
             } else if (xhr.readyState === 4 && xhr.status === 403) {
@@ -310,7 +296,6 @@ export function oauth2SignIn() {
 export const saveToken = () => {
 
     return new Promise(function (resolve, reject) {
-        console.log('how many times called')
         var params = JSON.parse(localStorage.getItem("oauth2-test-params"));
         if (params && params["access_token"]) {
             resolve(true)
@@ -325,7 +310,6 @@ export const saveToken = () => {
         if (Object.keys(params).length > 0) {
             getUserInfo(params).then( (id) => {
                 params['user_id'] = id
-                console.log(id)
                 localStorage.setItem("oauth2-test-params", JSON.stringify(params));
                 resolve(true)
             })

@@ -110,7 +110,7 @@ export const pushUsertoDb = (email, path) => {
 
 export const updateLikes = (postId, like) => {
   const postRef = ref(db, '/Recipes/' + postId);
-  console.log('here', postRef)
+  // console.log('here', postRef)
   runTransaction(postRef, (post) => {
     if (post) {
       if (like) {
