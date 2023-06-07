@@ -77,7 +77,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[Home page](public/home-page.png)
+![Home page](public/home-page.png)
 
 This app provides users with the ability to track participants for their events, providing the breakdown of people attending, not going, and still deciding. Users can input the google forms link witch which they invited participants into the app, which will then reveal a dashboard with the aforementioned information on the home page. The other main functionality of the app is sending reminders to participants. This will send automated emails to all respondents of the original google form invitation, and ask them to confirm their attendance status. This information is also shown on the dashboard.  
 
@@ -127,17 +127,17 @@ This app provides users with the ability to track participants for their events,
 
 First, sign in with a google account and continue to the home screen. Sometimes, if the continue button doesn't work, you have to clear the browser cache and reload. To add an event to the home page, press the "Add Event" button in the navbar. Then, add the editor URL of the google form (not the invite URL) with which you invited participants. 
 
-[Add Event](public/add_event.png)
+![Add Event](public/add_event.png)
 
 Note, for the google form must be of the following template. Sepcifically, there must two items in the beginning for time (in the form mm-dd-yy-hh-mm) and host. Then, there must be a yes/no/maybe question for attendance.
 
 
-[form](public/form.png)
+![form](public/form.png)
 
 
 To see the event dashboard, click on the event in the home page. Then, to send reminders, press the add reminder button on the dashboard.
 
-[dashboard](public/dashboard.png)
+![dashboard](public/dashboard.png)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
