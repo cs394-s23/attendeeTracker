@@ -74,7 +74,7 @@
 
 ![Home page](public/home-page.png)
 
-This app provides users with the ability to track participants for their events, providing the breakdown of people attending, not going, and still deciding. Users can input the google forms link witch which they invited participants into the app, which will then reveal a dashboard with the aforementioned information on the home page. The other main functionality of the app is sending reminders to participants. This will send automated emails to all respondents of the original google form invitation, and ask them to confirm their attendance status. This information is also shown on the dashboard.  
+This app provides users with the ability to track attendance to their events. By inputting the google forms link with which they invited participants, users are able to view a dashboard with attendance information, including who is attending, not attending, and maybe attending. Users are also able to send reminders to participants. This will send automated emails to all respondents of the original google form invitation, asking them to confirm their attendance status. This confirmation data is then also displayed on the dashboard.  
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -92,12 +92,12 @@ This app provides users with the ability to track participants for their events,
 
 ### Installation
 
-1. Greate a free Google OAuth2.0 Client ID  at [https://support.google.com/cloud/answer/6158849?hl=en](https://support.google.com/cloud/answer/6158849?hl=en)
+1. Create a free Google OAuth2.0 Client ID  at [https://support.google.com/cloud/answer/6158849?hl=en](https://support.google.com/cloud/answer/6158849?hl=en)
 2. Place the Client ID in googleFormApi.js in line 5
    ```js
    var YOUR_CLIENT_ID = enter_key_here
    ```
-3. Give developers access to use Client ID in Google Cloud Console, our publish app to give any Google user access 
+3. Give developers access to use Client ID in Google Cloud Console, or publish app to give any Google user access 
 4. Clone the repo
    ```sh
    git clone https://github.com/cs394-s23/attendeeTracker.git
@@ -112,7 +112,7 @@ This app provides users with the ability to track participants for their events,
    ```js
    const firebaseConfig = {enter config here}
    ```
-8. Sign up for a emailjs account at [https://www.emailjs.com/](https://www.emailjs.com/), and enter ID and service keys in Reminder.jsx
+8. Sign up for an emailjs account at [https://www.emailjs.com/](https://www.emailjs.com/), and enter ID and service keys in Reminder.jsx
    ```js
    const serviceID = "enter id";
    const templateID = "enter id"; 
@@ -126,23 +126,23 @@ This app provides users with the ability to track participants for their events,
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-First, sign in with a google account and continue to the home screen. Sometimes, if the continue button doesn't work, you have to clear the browser cache and reload. To add an event to the home page, press the "Add Event" button in the navbar. Then, add the editor URL of the google form (not the invite URL) with which you invited participants. 
+First, sign in with a google account and click "continue" to access the home screen. If the continue button fails to respond, clear your browser cache and reload. To add an event to the home page, press the "Add Event" button in the navbar. Then, add the editor URL of the google form (not the invite URL) with which you invited participants. 
 
 ![Add Event](public/add_event.png)
 
-Note, for the google form must be of the following template. Sepcifically, there must two items in the beginning for time (in the form mm-dd-yy-hh-mm) and host. Then, there must be a yes/no/maybe question for attendance.
+Note that the google form must follow this template. Specifically, it must begin with the event time (in the form mm-dd-yy-hh-mm) and host name. Then, there must be a yes/no/maybe multiple choice question for attendance.
 
 
 ![form](public/form.png)
 
 
-To see the event dashboard, click on the event in the home page. Then, to send reminders, press the add reminder button on the dashboard. These reminders will be in an email format using the Emailjs service. It will send a link to the original attendance form with an added question to confirm attendance.
+To view the event dashboard, click on the event in the home page. Then, to send reminders, press the add reminder button on the dashboard. This will send an email to all of the original form responders using Emailjs. It will send a link to the original attendance form with an added question to confirm attendance.
 
-There is also a "refresh data" button that will pull any new responses to the form to keep the numbers up to date.
+There is also a "refresh data" button that will pull any new form responses to keep the attendance information up to date.
 
 ![dashboard](public/dashboard.png)
 
-By pressing each of the attendance icons, a modal screen will pop up and allow you to see a list of who is attending, not attending, or maybe attending.
+By pressing each of the attendance icons on the dashboard, a modal screen will appear with a list of who is attending, not attending, or maybe attending.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
