@@ -18,7 +18,7 @@ import {
 } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDhANdqbOZ1d4we5iBdCc_1TM1u4AYINBU",
+  apiKey: "api key",
   authDomain: "onsite-ca39b.firebaseapp.com",
   projectId: "onsite-ca39b",
   storageBucket: "onsite-ca39b.appspot.com",

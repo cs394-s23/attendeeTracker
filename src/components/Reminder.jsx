@@ -2,9 +2,9 @@ import React, { useRef } from "react";
 import emailjs from "@emailjs/browser";
 
 // Setup emailjs (replace these with your account details)
-const serviceID = "service_jx31r0d";
-const templateID = "template_pgii825";
-const publicKey = "V3iGvRLEXLu2d7Qqs";
+const serviceID = "Service ID";
+const templateID = "template ID";
+const publicKey = "public Key";
 
 // for testing
 // const templateParams = {

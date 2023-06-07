@@ -2,7 +2,7 @@ import { pushDb, useDbData, pushUsertoDb, setDb } from "../utilities/firebase";
 
 
 var YOUR_CLIENT_ID =
-    "830241005429-o7l0fqrcdqp9ef44qc8upa6j3510vbvr.apps.googleusercontent.com";
+    "Insert ID here";
 var YOUR_REDIRECT_URI = "https://onsite-ca39b.web.app";
 // var YOUR_REDIRECT_URI = "http://localhost:5173";
 var fragmentString = location.hash.substring(1);
