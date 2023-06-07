@@ -1,7 +1,8 @@
 import { describe, test } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { it, vi, beforeEach } from "vitest";
-import DashChartCard from "./dashInfoCard";
+import DashChartCard from "./dashChartCard";
+import DashInfoCard from "./dashInfoCard";
 import * as googleFormApi from "../utilities/googleFormApi";
 
 
@@ -31,7 +32,7 @@ describe("graph", () => {
 
   test("event dashboard shows graph of responses", () => {
     
-    render(<DashInfoCard data={mockData_} />);
+    render(<DashChartCard data={mockData_} />);
     expect(screen.getByTestId("graph")).toBeDefined();
 
   });
