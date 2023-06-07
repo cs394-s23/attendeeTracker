@@ -74,7 +74,7 @@
 
 ![Home page](public/home-page.png)
 
-This app provides users with the ability to track attendance to their events. By inputting the google forms link with which they invited participants, users are able to view a dashboard with attendance information, including who is attending, not attending, and maybe attending. Users are also able to send reminders to participants. This will send automated emails to all respondents of the original google form invitation, asking them to confirm their attendance status. This confirmation data is then also displayed on the dashboard.  
+This app provides users with the ability to track attendance to their events. By inputting the google forms link with which they invited participants, users are able to view a dashboard with attendance information, including who is attending, not attending, and maybe attending. Users are also able to send automated email reminders to participants, asking them to confirm their attendance status. This confirmation data is then also displayed on the dashboard.  
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
