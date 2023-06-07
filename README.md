@@ -136,9 +136,13 @@ Note, for the google form must be of the following template. Sepcifically, there
 ![form](public/form.png)
 
 
-To see the event dashboard, click on the event in the home page. Then, to send reminders, press the add reminder button on the dashboard.
+To see the event dashboard, click on the event in the home page. Then, to send reminders, press the add reminder button on the dashboard. These reminders will be in an email format using the Emailji service. It will send a link to the original attendance form with an added question to confirm attendance.
+
+There is also a "refresh data" button that will pull any new responses to the form to keep the numbers up to date.
 
 ![dashboard](public/dashboard.png)
+
+By pressing each of the attendance icons, a modal screen will pop up and allow you to see a list of who is attending, not attending, or maybe attending.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
