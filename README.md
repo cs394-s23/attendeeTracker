@@ -112,6 +112,12 @@ This app provides users with the ability to track participants for their events,
    ```js
    const firebaseConfig = {enter config here}
    ```
+8. Sign up for a emailjs account at [https://www.emailjs.com/](https://www.emailjs.com/), and enter ID and service keys in Reminder.jsx
+   ```js
+   const serviceID = "enter id";
+   const templateID = "enter id"; 
+   const publicKey = "enter key";
+   ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
